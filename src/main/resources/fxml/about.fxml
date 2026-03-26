@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.AboutController"
+            style="-fx-background-color: #ECF0F1; -fx-background: #ECF0F1;">
+
+    <VBox spacing="0" style="-fx-background-color: #ECF0F1; -fx-padding: 40;">
+
+        <!-- Title -->
+        <Label text="About AlgoViz"
+               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+        <Label text="Interactive Algorithm &amp; Data Structure Visualizer"
+               style="-fx-font-size: 15px; -fx-text-fill: #3498DB; -fx-padding: 4 0 20 0;"/>
+
+        <!-- Divider -->
+        <Label text="" style="-fx-border-color: #BDC3C7; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+        <!-- Overview -->
+        <VBox spacing="8" style="-fx-padding: 20 0 20 0;">
+            <Label text="Overview"
+                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+            <Label wrapText="true"
+                   text="AlgoViz is an educational desktop application built with Java 21 and JavaFX 21, designed to make learning algorithms and data structures intuitive and engaging. Instead of reading static textbook diagrams, users can watch every step of an algorithm unfold in real time — with full control over speed, stepping, and interaction."
+                   style="-fx-font-size: 13px; -fx-text-fill: #34495E; -fx-line-spacing: 3;"/>
+        </VBox>
+
+        <!-- Divider -->
+        <Label text="" style="-fx-border-color: #BDC3C7; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+        <!-- Key Features -->
+        <VBox spacing="14" style="-fx-padding: 20 0 20 0;">
+            <Label text="Key Features"
+                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+
+            <!-- Sorting -->
+            <VBox spacing="4">
+                <Label text="⬛  Sorting Algorithms"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Visualize Bubble Sort, Insertion Sort, Selection Sort, and Merge Sort with animated bar swaps and comparisons. Supports custom arrays, random generation, adjustable speed, pause/resume, and step-by-step mode. Live comparison and swap counters are shown throughout."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+            <!-- Searching -->
+            <VBox spacing="4">
+                <Label text="⬛  Searching Algorithms"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Linear Search and Binary Search are demonstrated on a visual array. The current element being checked is highlighted at each step. Binary Search also highlights the active search range. Custom arrays and target values are supported."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+            <!-- Pathfinding -->
+            <VBox spacing="4">
+                <Label text="⬛  Pathfinding Visualizer"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    A 25x40 interactive grid where users can place start/end nodes and draw walls. Dijkstra's Algorithm and BFS explore the grid in real time, colouring visited cells and tracing the final shortest path in yellow. Random wall generation is included."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+            <!-- Graph -->
+            <VBox spacing="4">
+                <Label text="⬛  Graph Algorithms"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Build custom graphs by clicking to add nodes and Ctrl+clicking to connect them. Run DFS Traversal, BFS Traversal, and Kruskal's Minimum Spanning Tree. Edges and nodes are highlighted as the algorithm progresses. The full traversal order is displayed as an array at the bottom after each run."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+            <!-- Tree -->
+            <VBox spacing="4">
+                <Label text="⬛  Tree / Binary Search Tree"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Insert, delete, and search nodes in a Binary Tree or BST with animated node highlighting. Run Inorder, Preorder, Postorder, and Level Order traversals. Find minimum and maximum values instantly. Node count, tree height, and leaf count are displayed live."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+            <!-- Stack & Queue -->
+            <VBox spacing="4">
+                <Label text="⬛  Stack &amp; Queue"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Switch between Stack (LIFO) and Queue (FIFO) modes. Push/Pop and Enqueue/Dequeue operations are animated with colour highlights. Peek, search, reverse (queue), and random fill are supported. The visualization grows dynamically and is always clearly labelled with TOP, FRONT, and REAR indicators."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+            <!-- Linked List -->
+            <VBox spacing="4">
+                <Label text="⬛  Linked List"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Visual representation of a singly linked list with node insertion, deletion, and traversal animations showing pointer connections between nodes."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
+        </VBox>
+
+        <!-- Divider -->
+        <Label text="" style="-fx-border-color: #BDC3C7; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+
+
+        <!-- Divider -->
+        <Label text="" style="-fx-border-color: #BDC3C7; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+        <!-- Credits -->
+        <VBox spacing="14" style="-fx-padding: 20 0 10 0;">
+            <Label text="Developed By"
+                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+
+            <HBox spacing="20">
+                <!-- Student 1 -->
+                <VBox spacing="6" style="-fx-background-color: #2C3E50; -fx-padding: 18 28 18 28; -fx-background-radius: 8;">
+                    <Label text="Swapnil Das"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Student ID: 2405016"
+                           style="-fx-font-size: 12px; -fx-text-fill: #BDC3C7;"/>
+                </VBox>
+
+                <!-- Student 2 -->
+                <VBox spacing="6" style="-fx-background-color: #2C3E50; -fx-padding: 18 28 18 28; -fx-background-radius: 8;">
+                    <Label text="Nazmul Hasan Rafi"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Student ID: 2405017"
+                           style="-fx-font-size: 12px; -fx-text-fill: #BDC3C7;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

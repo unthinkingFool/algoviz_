@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.SearchingController">
+
+    <top>
+        <VBox style="-fx-background-color: white; -fx-padding: 20;" spacing="15">
+            <Label text="Searching Visualizer" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="Select Algorithm:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Button fx:id="btnLinear" text="Linear Search" onAction="#selectLinearSearch"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="130"/>
+                <Button fx:id="btnBinary" text="Binary Search" onAction="#selectBinarySearch"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="130"/>
+            </HBox>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="Custom Array (comma-separated):"/>
+                    <TextField fx:id="customArrayField" prefWidth="300" promptText="e.g., 10, 20, 30, 40, 50"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Target Value:"/>
+                    <TextField fx:id="targetField" prefWidth="100" promptText="Enter value"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="15">
+                <Button text="Load Custom Array" onAction="#loadCustomArray"
+                        style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button text="Generate Random" onAction="#generateArray"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button fx:id="btnPlayAll" text="▶ Search All" onAction="#playAll"
+                        style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" prefWidth="120"/>
+                <Button fx:id="btnStep" text="Step Forward ▶|" onAction="#stepForward"
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="130"/>
+                <Button text="⟲ Reset" onAction="#reset"
+                        style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            </HBox>
+
+            <HBox spacing="20">
+                <Label fx:id="algorithmLabel" text="Algorithm: None Selected" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+                <Label fx:id="statusLabel" text="Ready" style="-fx-font-size: 14px;"/>
+                <Label fx:id="comparisonsLabel" text="Comparisons: 0" style="-fx-font-size: 14px;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <Pane fx:id="visualizationPane" style="-fx-background-color: #F8F9FA;"
+              minWidth="800" minHeight="400" prefWidth="1000" prefHeight="500" maxWidth="Infinity" maxHeight="Infinity">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </Pane>
+    </center>
+
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    prefWidth="260" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;">
+            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+
+                <Label text="Algorithm Info"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="" style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+                <!-- Linear Search -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Linear Search"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="for i = 0 to n-1:&#10;  if arr[i] == target:&#10;    return i&#10;return -1"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="Best:    O(1)"    style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Average: O(n)"    style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Worst:   O(n)"    style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:   O(1)"    style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                    <Label wrapText="true" text="Works on unsorted arrays."
+                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                </VBox>
+
+                <!-- Binary Search -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Binary Search"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="left = 0, right = n-1&#10;while left &lt;= right:&#10;  mid = (left+right)/2&#10;  if arr[mid] == target:&#10;    return mid&#10;  elif arr[mid] &lt; target:&#10;    left = mid + 1&#10;  else:&#10;    right = mid - 1&#10;return -1"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="Best:    O(1)"      style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Average: O(log n)"  style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Worst:   O(log n)"  style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:   O(1)"      style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                    <Label wrapText="true" text="Requires a sorted array."
+                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>

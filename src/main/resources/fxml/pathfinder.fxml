@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.PathfinderController">
+
+    <top>
+        <VBox style="-fx-background-color: white; -fx-padding: 20;" spacing="15">
+            <Label text="Pathfinding Visualizer" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="Select Algorithm:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Button fx:id="btnDijkstra" text="Dijkstra" onAction="#selectDijkstra"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="110"/>
+                <Button fx:id="btnBFS" text="BFS" onAction="#selectBFS"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="110"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="Start Node (row,col):"/>
+                    <TextField fx:id="startField" prefWidth="100" promptText="0,0"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="End Node (row,col):"/>
+                    <TextField fx:id="endField" prefWidth="100" promptText="24,39"/>
+                </VBox>
+                <Button text="Set Start/End" onAction="#setStartEnd"
+                        style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="130"/>
+                <Button text="Generate Random Walls" onAction="#generateRandomWalls"
+                        style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="180"/>
+            </HBox>
+
+            <VBox spacing="10">
+                <Label text="Instructions:" style="-fx-font-weight: bold;"/>
+                <Label text="• Enter start/end coordinates OR click 'Mark as Start' then click grid, then 'Mark as End' and click grid"/>
+                <Label text="• Click 'Generate Random Walls' to create maze"/>
+            </VBox>
+
+            <HBox spacing="15">
+                <Button text="Mark as Start" onAction="#markAsStartMode"
+                        style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="120"/>
+                <Button text="Mark as End" onAction="#markAsEndMode"
+                        style="-fx-background-color: #C0392B; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="120"/>
+                <Button text="Add Walls" onAction="#addWallsMode"
+                        style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="120"/>
+                <Button text="Clear Grid" onAction="#clearGrid"
+                        style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button text="Clear Path Only" onAction="#clearPath"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button fx:id="btnPlayAll" text="▶ Find Path" onAction="#playAll"
+                        style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" prefWidth="120"/>
+                <Button fx:id="btnStep" text="Step Forward ▶|" onAction="#stepForward"
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="130"/>
+            </HBox>
+
+            <HBox spacing="20">
+                <Label fx:id="algorithmLabel" text="Algorithm: None Selected" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+                <Label fx:id="statusLabel" text="Click to place start node" style="-fx-font-size: 14px;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="false" fitToHeight="false"
+                    style="-fx-background-color: #F8F9FA;"
+                    hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
+            <GridPane fx:id="gridPane" style="-fx-background-color: #F8F9FA; -fx-padding: 20;"
+                      hgap="1" vgap="1" alignment="CENTER"/>
+        </ScrollPane>
+    </center>
+
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    prefWidth="260" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;">
+            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+
+                <Label text="Algorithm Info"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="" style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+                <!-- Dijkstra -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Dijkstra's Algorithm"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="dist[start] = 0&#10;PQ = {start}&#10;while PQ not empty:&#10;  u = PQ.poll()&#10;  if u == end: return path&#10;  for each neighbor v:&#10;    newDist = dist[u] + 1&#10;    if newDist &lt; dist[v]:&#10;      dist[v] = newDist&#10;      v.parent = u&#10;      PQ.add(v)"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="O((V + E) log V)"  style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:   O(V)"      style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                    <Label wrapText="true" text="Guarantees shortest path. Uses priority queue."
+                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                </VBox>
+
+                <!-- BFS -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 BFS Pathfinding"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="queue = {start}&#10;visited = {start}&#10;while queue not empty:&#10;  u = queue.poll()&#10;  if u == end: return path&#10;  for each neighbor v:&#10;    if not visited:&#10;      v.parent = u&#10;      queue.add(v)&#10;      visited.add(v)"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="O(V + E)"          style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:   O(V)"      style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                    <Label wrapText="true" text="Shortest path in unweighted grids."
+                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                </VBox>
+
+
+
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane prefHeight="800" prefWidth="1200"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.MainController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+            <Label text="AlgoViz - Algorithm Visualizer" textFill="white">
+                <font>
+                    <Font name="System Bold" size="22" />
+                </font>
+            </Label>
+        </HBox>
+    </top>
+
+    <!-- Left Navigation -->
+    <left>
+        <VBox prefWidth="200" spacing="10"
+              style="-fx-background-color: #34495E; -fx-padding: 15;">
+
+            <Label text="VISUALIZERS" textFill="#BDC3C7"
+                   style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 5 0 5 0;"/>
+
+            <Button fx:id="btnSorting" maxWidth="Infinity" onAction="#showSorting"
+                    prefHeight="40"
+                    style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Sorting" />
+
+            <Button fx:id="btnSearching" maxWidth="Infinity" onAction="#showSearching"
+                    prefHeight="40"
+                    style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Searching" />
+
+            <Button fx:id="btnPathfinder" maxWidth="Infinity" onAction="#showPathfinder"
+                    prefHeight="40"
+                    style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Pathfinder" />
+
+            <Button fx:id="btnGraph" maxWidth="Infinity" onAction="#showGraph"
+                    prefHeight="40"
+                    style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Graph" />
+
+            <Label text="DATA STRUCTURES" textFill="#BDC3C7"
+                   style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 10 0 5 0;"/>
+
+            <Button fx:id="btnTree" maxWidth="Infinity" onAction="#showTree"
+                    prefHeight="40"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Tree / BST" />
+
+            <Button fx:id="btnStackQueue" maxWidth="Infinity" onAction="#showStackQueue"
+                    prefHeight="40"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Stack &amp; Queue" />
+
+            <Button fx:id="btnLinkedList" maxWidth="Infinity" onAction="#showLinkedList"
+                    prefHeight="40"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Linked List" />
+
+            <Button fx:id="btnHeap" maxWidth="Infinity" onAction="#showHeap"
+                    prefHeight="40"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="Heap" />
+            <Label text="" style="-fx-padding: 10 0 0 0;"/>
+
+            <Button fx:id="btnAbout" maxWidth="Infinity" onAction="#showAbout"
+                    prefHeight="40"
+                    style="-fx-background-color: #7F8C8D; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 4;"
+                    text="About Us" />
+        </VBox>
+    </left>
+
+    <!-- Center Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: #ECF0F1;">
+            <VBox alignment="CENTER" spacing="15">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+
+                <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"
+                       text="Welcome to AlgoViz" />
+
+                <Label style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;"
+                       text="Interactive Algorithm &amp; Data Structure Visualizer" />
+
+                <Label style="-fx-font-size: 13px; -fx-text-fill: #95A5A6;"
+                       text="Select a visualizer from the left menu to begin">
+                    <padding>
+                        <Insets top="15"/>
+                    </padding>
+                </Label>
+
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

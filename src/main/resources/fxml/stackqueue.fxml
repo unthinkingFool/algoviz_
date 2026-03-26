@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.StackQueueController"
+            prefWidth="1200"
+            prefHeight="780"
+            style="-fx-background-color: #ECF0F1;">
+
+    <center>
+        <VBox spacing="10" style="-fx-background-color: #ECF0F1;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- Header -->
+            <HBox alignment="CENTER" style="-fx-background-color: #2C3E50; -fx-padding: 12;">
+                <Label text="Stack &amp; Queue Visualizer" textFill="white"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <!-- Data Structure Type Selection -->
+            <HBox spacing="15" alignment="CENTER_LEFT"
+                  style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                <Label text="Data Structure:" style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+                <RadioButton fx:id="rbStack" text="Stack (LIFO)" style="-fx-font-size: 12px;"/>
+                <RadioButton fx:id="rbQueue" text="Queue (FIFO)" style="-fx-font-size: 12px;"/>
+            </HBox>
+
+            <!-- Control Panel -->
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                <Label text="Value:" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <TextField fx:id="inputField" promptText="Enter value" prefWidth="80"
+                           style="-fx-font-size: 12px;"/>
+                <Button fx:id="btnPush" text="Push" onAction="#handlePush"
+                        style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Button fx:id="btnPop" text="Pop" onAction="#handlePop"
+                        style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Button fx:id="btnPeek" text="Peek" onAction="#handlePeek"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Separator orientation="VERTICAL" prefHeight="30"/>
+                <Button fx:id="btnRandom" text="Random" onAction="#handleRandom"
+                        style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Button fx:id="btnClear" text="Clear" onAction="#handleClear"
+                        style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="70" prefHeight="30"/>
+            </HBox>
+
+            <!-- Additional Operations -->
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                <Label fx:id="operationLabel" text="Operations:"
+                       style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <Button fx:id="btnSearch" text="Search" onAction="#handleSearch"
+                        style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Button fx:id="btnPeekRear" text="Peek Rear" onAction="#handlePeekRear"
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="90" prefHeight="30" visible="false"/>
+                <Button fx:id="btnReverse" text="Reverse" onAction="#handleReverse"
+                        style="-fx-background-color: #D35400; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="90" prefHeight="30" visible="false"/>
+            </HBox>
+
+            <!-- Status Bar -->
+            <HBox spacing="15" alignment="CENTER_LEFT"
+                  style="-fx-background-color: #34495E; -fx-padding: 8; -fx-background-radius: 5;">
+                <Label fx:id="statusLabel" text="Ready" textFill="white"
+                       style="-fx-font-size: 12px;" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="sizeLabel" text="Size: 0 / 10" textFill="white"
+                       style="-fx-font-size: 12px;"/>
+            </HBox>
+
+            <!-- Visualization Pane -->
+            <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED"
+                        fitToWidth="false" fitToHeight="false"
+                        VBox.vgrow="ALWAYS"
+                        style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 2;">
+                <Pane fx:id="visualizationPane" style="-fx-background-color: white;"
+                      prefWidth="1400" prefHeight="500"/>
+            </ScrollPane>
+
+            <!-- Legend -->
+            <HBox spacing="25" alignment="CENTER"
+                  style="-fx-background-color: white; -fx-padding: 8; -fx-background-radius: 5;">
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="▭" style="-fx-font-size: 16px; -fx-text-fill: #3498DB;"/>
+                    <Label text="Element" style="-fx-font-size: 11px;"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="▭" style="-fx-font-size: 16px; -fx-text-fill: #F1C40F;"/>
+                    <Label text="Active" style="-fx-font-size: 11px;"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="▭" style="-fx-font-size: 16px; -fx-text-fill: #2ECC71;"/>
+                    <Label text="Found" style="-fx-font-size: 11px;"/>
+                </HBox>
+            </HBox>
+
+
+
+        </VBox>
+    </center>
+
+    <!-- Right Panel: Pseudocode + Time Complexity -->
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    prefWidth="265" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;">
+            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+
+                <Label text="Algorithm Info"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="" style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+                <!-- Stack -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Stack (LIFO)"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Push Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="push(val):&#10;  if isFull(): error&#10;  top = new Node(val)&#10;  size++"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Pop Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="pop():&#10;  if isEmpty(): error&#10;  val = top.value&#10;  top = top.next&#10;  size--&#10;  return val"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="Push:   O(1)"  style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Pop:    O(1)"  style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Peek:   O(1)"  style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Search: O(n)"  style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:  O(n)"  style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+                <!-- Queue -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Queue (FIFO)"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Enqueue Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="enqueue(val):&#10;  if isFull(): error&#10;  node = new Node(val)&#10;  rear.next = node&#10;  rear = node&#10;  size++"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Dequeue Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="dequeue():&#10;  if isEmpty(): error&#10;  val = front.value&#10;  front = front.next&#10;  size--&#10;  return val"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="Enqueue: O(1)"  style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Dequeue: O(1)"  style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Peek:    O(1)"  style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Search:  O(n)"  style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Reverse: O(n)"  style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:   O(n)"  style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>

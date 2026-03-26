@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.SortingController">
+
+    <top>
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Sorting Visualizer"/>
+
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Select Algorithm:"/>
+                <Button fx:id="btnBubble" onAction="#selectBubbleSort" prefWidth="120"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;"
+                        text="Bubble Sort"/>
+                <Button fx:id="btnInsertion" onAction="#selectInsertionSort" prefWidth="120"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;"
+                        text="Insertion Sort"/>
+                <Button fx:id="btnSelection" onAction="#selectSelectionSort" prefWidth="120"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;"
+                        text="Selection Sort"/>
+                <Button fx:id="btnMerge" onAction="#selectMergeSort" prefWidth="120"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;"
+                        text="Merge Sort"/>
+                <Button fx:id="btnQuick" onAction="#selectQuickSort" prefWidth="120"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;"
+                        text="Quick Sort"/>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <VBox spacing="5">
+                    <Label text="Custom Array (comma-separated):"/>
+                    <TextField fx:id="customArrayField" prefWidth="300" promptText="e.g., 64, 34, 25, 12, 22, 11, 90"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Array Size:"/>
+                    <Slider fx:id="arraySizeSlider" max="50" min="5" prefWidth="200" showTickLabels="true"
+                            showTickMarks="true" value="20"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Speed:"/>
+                    <Slider fx:id="speedSlider" max="100" min="1" prefWidth="150" showTickLabels="true"
+                            showTickMarks="true" value="50"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="15">
+                <Button onAction="#loadCustomArray"
+                        style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 14px;"
+                        text="Load Custom Array"/>
+                <Button onAction="#generateArray"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 14px;"
+                        text="Generate Random"/>
+                <Button fx:id="btnPlayAll" onAction="#playAll" prefWidth="100"
+                        style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"
+                        text="▶ Play All"/>
+                <Button fx:id="btnStep" onAction="#stepForward" prefWidth="130"
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 14px;"
+                        text="Step Forward ▶|"/>
+                <Button fx:id="btnPause" onAction="#pauseSort"
+                        style="-fx-background-color: #E67E22; -fx-text-fill: white; -fx-font-size: 14px;"
+                        text="⏸ Pause"/>
+                <Button onAction="#resetSort"
+                        style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px;"
+                        text="⟲ Reset"/>
+            </HBox>
+
+            <HBox spacing="20">
+                <Label fx:id="algorithmLabel"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"
+                       text="Algorithm: None Selected"/>
+                <Label fx:id="statusLabel" style="-fx-font-size: 14px;" text="Ready"/>
+                <Label fx:id="comparisonsLabel" style="-fx-font-size: 14px;" text="Comparisons: 0"/>
+                <Label fx:id="swapsLabel" style="-fx-font-size: 14px;" text="Swaps: 0"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <Pane fx:id="visualizationPane" style="-fx-background-color: #F8F9FA;">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20"/>
+            </padding>
+        </Pane>
+    </center>
+
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="260"
+                    style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;" vbarPolicy="AS_NEEDED">
+            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+
+                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Algorithm Info"/>
+                <Label style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"
+                       text=""/>
+
+                <!-- Bubble Sort -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
+                           text="🔵 Bubble Sort"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Pseudocode:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
+                           text="for i = 0 to n-1:&#10;  swapped = false&#10;  for j = 0 to n-i-2:&#10;    if arr[j] &gt; arr[j+1]:&#10;      swap(arr[j], arr[j+1])&#10;      swapped = true&#10;  if not swapped: break"
+                           wrapText="true"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Time Complexity:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"
+                           text="Best:    O(n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"
+                           text="Average: O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"
+                           text="Worst:   O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"
+                           text="Space:   O(1)"/>
+                </VBox>
+
+                <!-- Insertion Sort -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
+                           text="🔵 Insertion Sort"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Pseudocode:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
+                           text="for i = 1 to n-1:&#10;  key = arr[i]&#10;  j = i - 1&#10;  while j &gt;= 0 and&#10;        arr[j] &gt; key:&#10;    arr[j+1] = arr[j]&#10;    j = j - 1&#10;  arr[j+1] = key"
+                           wrapText="true"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Time Complexity:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"
+                           text="Best:    O(n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"
+                           text="Average: O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"
+                           text="Worst:   O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"
+                           text="Space:   O(1)"/>
+                </VBox>
+
+                <!-- Selection Sort -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
+                           text="🔵 Selection Sort"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Pseudocode:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
+                           text="for i = 0 to n-2:&#10;  minIdx = i&#10;  for j = i+1 to n-1:&#10;    if arr[j] &lt; arr[minIdx]:&#10;      minIdx = j&#10;  swap(arr[i], arr[minIdx])"
+                           wrapText="true"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Time Complexity:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"
+                           text="Best:    O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"
+                           text="Average: O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"
+                           text="Worst:   O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"
+                           text="Space:   O(1)"/>
+                </VBox>
+
+                <!-- Merge Sort -->
+                <VBox prefWidth="228.0" spacing="5"
+                      style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
+                           text="🔵 Merge Sort"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Pseudocode:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
+                           text="mergeSort(arr, l, r):&#10;  if l &lt; r:&#10;    mid = (l + r) / 2&#10;    mergeSort(arr, l, mid)&#10;    mergeSort(arr, mid+1, r)&#10;    merge(arr, l, mid, r)"
+                           wrapText="true"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Time Complexity:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"
+                           text="Best:    O(n log n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"
+                           text="Average: O(n log n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"
+                           text="Worst:   O(n log n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"
+                           text="Space:   O(n)"/>
+                </VBox>
+                <!-- Quick Sort -->
+                <VBox prefWidth="228.0" spacing="5"
+                      style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill:#3498DB;"
+                           text="🔵 Quick Sort"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Pseudocode:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
+                           text="quickSort(arr, p, r):&#10;  if p &lt; r:&#10;    q = partition(arr, p, r)&#10;    quickSort(arr, p, q-1)&#10;    quickSort(arr, q+1, r)&#10;&#10;partition(arr, p, r):&#10;  x = arr[r]&#10;  i = p - 1&#10;  for j = p to r-1:&#10;    if arr[j] &lt;= x:&#10;      i++&#10;      swap(arr[i], arr[j])&#10;  swap(arr[i+1], arr[r])&#10;  return i + 1"
+                           wrapText="true"/>
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
+                           text="Time Complexity:"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"
+                           text="Best:    O(n log n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"
+                           text="Average: O(n log n)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"
+                           text="Worst:   O(n²)"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"
+                           text="Space:   O(log n)"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>

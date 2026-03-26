@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dsa.visualizer.controllers.TreeController"
+            prefWidth="1200"
+            prefHeight="780"
+            style="-fx-background-color: #ECF0F1;">
+
+    <center>
+        <VBox spacing="10" style="-fx-background-color: #ECF0F1;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- Header -->
+            <HBox alignment="CENTER" style="-fx-background-color: #2C3E50; -fx-padding: 12;">
+                <Label text="Binary Search Tree Visualizer" textFill="white"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <!-- Control Panel -->
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                <Label text="Value:" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <TextField fx:id="inputField" promptText="Enter value" prefWidth="80"
+                           style="-fx-font-size: 12px;"/>
+                <Button fx:id="btnInsert" text="Insert" onAction="#handleInsert"
+                        style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="70" prefHeight="30"/>
+                <Button fx:id="btnDelete" text="Delete" onAction="#handleDelete"
+                        style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="70" prefHeight="30"/>
+                <Button fx:id="btnSearch" text="Search" onAction="#handleSearch"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="70" prefHeight="30"/>
+                <Separator orientation="VERTICAL" prefHeight="30"/>
+                <Button fx:id="btnRandom" text="Random" onAction="#generateRandom"
+                        style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Button fx:id="btnClear" text="Clear" onAction="#clearTree"
+                        style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="70" prefHeight="30"/>
+            </HBox>
+
+            <!-- Traversal Operations -->
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                <Label text="Traversals:" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <Button fx:id="btnInorder" text="Inorder" onAction="#handleInorder"
+                        style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="75" prefHeight="30"/>
+                <Button fx:id="btnPreorder" text="Preorder" onAction="#handlePreorder"
+                        style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="75" prefHeight="30"/>
+                <Button fx:id="btnPostorder" text="Postorder" onAction="#handlePostorder"
+                        style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="80" prefHeight="30"/>
+                <Button fx:id="btnLevelOrder" text="Level Order" onAction="#handleLevelOrder"
+                        style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="90" prefHeight="30"/>
+                <Separator orientation="VERTICAL" prefHeight="30"/>
+                <Button fx:id="btnFindMin" text="Find Min" onAction="#handleFindMin"
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="75" prefHeight="30"/>
+                <Button fx:id="btnFindMax" text="Find Max" onAction="#handleFindMax"
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 11px;"
+                        prefWidth="75" prefHeight="30"/>
+            </HBox>
+
+            <!-- Status Bar -->
+            <HBox spacing="15" alignment="CENTER_LEFT"
+                  style="-fx-background-color: #34495E; -fx-padding: 8; -fx-background-radius: 5;">
+                <Label fx:id="statusLabel" text="Ready" textFill="white"
+                       style="-fx-font-size: 12px;" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="infoLabel" text="Nodes: 0 | Height: 0 | Leaves: 0"
+                       textFill="white" style="-fx-font-size: 12px;"/>
+            </HBox>
+
+            <!-- Visualization Pane -->
+            <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED"
+                        fitToWidth="false" fitToHeight="false"
+                        VBox.vgrow="ALWAYS"
+                        style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 2;">
+                <Pane fx:id="treePane" style="-fx-background-color: white;"
+                      prefWidth="1400" prefHeight="600"/>
+            </ScrollPane>
+
+            <!-- Legend -->
+            <HBox spacing="25" alignment="CENTER"
+                  style="-fx-background-color: white; -fx-padding: 8; -fx-background-radius: 5;">
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="●" style="-fx-font-size: 16px; -fx-text-fill: #3498DB;"/>
+                    <Label text="Node" style="-fx-font-size: 11px;"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="●" style="-fx-font-size: 16px; -fx-text-fill: #F1C40F;"/>
+                    <Label text="Visiting" style="-fx-font-size: 11px;"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="●" style="-fx-font-size: 16px; -fx-text-fill: #2ECC71;"/>
+                    <Label text="Visited" style="-fx-font-size: 11px;"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="●" style="-fx-font-size: 16px; -fx-text-fill: #E74C3C;"/>
+                    <Label text="Found" style="-fx-font-size: 11px;"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Right Panel: Pseudocode + Time Complexity -->
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    prefWidth="265" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;">
+            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+
+                <Label text="Algorithm Info"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="" style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+
+                <!-- BST Insert / Search -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 BST Insert / Search"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="insert(node, val):&#10;  if node == null:&#10;    return new Node(val)&#10;  if val &lt; node.val:&#10;    node.left = insert(&#10;      node.left, val)&#10;  elif val > node.val:&#10;    node.right = insert(&#10;      node.right, val)&#10;  return node"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label text="Best/Avg: O(log n)" style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';"/>
+                    <Label text="Worst:    O(n)"     style="-fx-font-size: 11px; -fx-text-fill: #E74C3C; -fx-font-family: 'Courier New';"/>
+                    <Label text="Space:    O(h)"     style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+                <!-- Inorder -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Inorder Traversal"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="inorder(node):&#10;  inorder(node.left)&#10;  visit(node)&#10;  inorder(node.right)"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label wrapText="true" text="Gives sorted output for BST."
+                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                    <Label text="Time: O(n) | Space: O(h)" style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+                <!-- Preorder -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Preorder Traversal"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="preorder(node):&#10;  visit(node)&#10;  preorder(node.left)&#10;  preorder(node.right)"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time: O(n) | Space: O(h)" style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+                <!-- Postorder -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Postorder Traversal"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="postorder(node):&#10;  postorder(node.left)&#10;  postorder(node.right)&#10;  visit(node)"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time: O(n) | Space: O(h)" style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+                <!-- Level Order -->
+                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="🔵 Level Order (BFS)"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
+                    <Label wrapText="true"
+                           text="queue = {root}&#10;while queue not empty:&#10;  node = queue.poll()&#10;  visit(node)&#10;  if node.left:&#10;    queue.add(node.left)&#10;  if node.right:&#10;    queue.add(node.right)"
+                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
+                    <Label text="Time: O(n) | Space: O(n)" style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>
