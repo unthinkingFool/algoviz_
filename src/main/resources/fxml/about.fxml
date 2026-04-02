@@ -104,7 +104,19 @@
                        style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
             </VBox>
 
+            <VBox spacing="4">
+                <Label text="⬛ Binary Heap"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
+                <Label text="    Visual representation of a max heap and min heap. A complete binary tree that maintains the Heap Property. In a Max-Heap, every parent node is greater than or equal to its children, ensuring the largest element is always at the root. And Min-Heap functions the opposite."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
+            </VBox>
+
         </VBox>
+
+
+
+        <Label text="" style="-fx-border-color: #BDC3C7; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
 
         <!-- Divider -->
         <Label text="" style="-fx-border-color: #BDC3C7; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>

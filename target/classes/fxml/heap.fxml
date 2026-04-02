@@ -1,241 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <!--<?xml version="1.0" encoding="UTF-8"?>-->
 <!--<?import javafx.geometry.Insets?>-->
 <!--<?import javafx.scene.control.Button?>-->
 <!--<?import javafx.scene.control.Label?>-->
+<!--<?import javafx.scene.control.ScrollPane?>-->
 <!--<?import javafx.scene.control.Separator?>-->
-<!--<?import javafx.scene.control.Slider?>-->
 <!--<?import javafx.scene.control.TextField?>-->
-<!--<?import javafx.scene.control.Tooltip?>-->
 <!--<?import javafx.scene.layout.BorderPane?>-->
 <!--<?import javafx.scene.layout.HBox?>-->
 <!--<?import javafx.scene.layout.Pane?>-->
 <!--<?import javafx.scene.layout.VBox?>-->
-<!--<BorderPane xmlns="http://javafx.com/javafx/17"-->
-<!--            xmlns:fx="http://javafx.com/fxml/1"-->
-<!--            fx:controller="com.dsa.visualizer.controllers.HeapController"-->
-<!--            style="-fx-background-color: #1E2A38;">-->
-<!--    &lt;!&ndash; ═══════════════════════  TOP TOOLBAR  ═══════════════════════ &ndash;&gt;-->
-<!--    <top>-->
-<!--        <VBox style="-fx-background-color: #2C3E50; -fx-padding: 16;" spacing="12">-->
-<!--            &lt;!&ndash; Title &ndash;&gt;-->
-<!--            <HBox alignment="CENTER_LEFT" spacing="12">-->
-<!--                <Label text="🌳 Max-Heap Visualizer"-->
-<!--                       style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #ECF0F1;"/>-->
-<!--                <Label fx:id="sizeLabel" text="Size: 0"-->
-<!--                       style="-fx-font-size: 13px; -fx-text-fill: #95A5A6; -fx-padding: 2 8 2 8;-->
-<!--                              -fx-background-color: #34495E; -fx-background-radius: 10;"/>-->
-<!--                <Label fx:id="maxLabel" text="Max: —"-->
-<!--                       style="-fx-font-size: 13px; -fx-text-fill: #E67E22; -fx-padding: 2 8 2 8;-->
-<!--                              -fx-background-color: #34495E; -fx-background-radius: 10;"/>-->
-<!--            </HBox>-->
-<!--            <Separator style="-fx-background-color: #4A6278;"/>-->
-<!--            &lt;!&ndash; Operations Row &ndash;&gt;-->
-<!--            <HBox spacing="20" alignment="CENTER_LEFT">-->
-<!--                &lt;!&ndash; INSERT &ndash;&gt;-->
-<!--                <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10;-->
-<!--                                         -fx-background-radius: 8;" prefWidth="155">-->
-<!--                    <Label text="INSERT" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                                -fx-text-fill: #2ECC71;"/>-->
-<!--                    <HBox spacing="6">-->
-<!--                        <TextField fx:id="insertField" prefWidth="80" promptText="value"-->
-<!--                                   style="-fx-background-color: #1E2A38; -fx-text-fill: white;-->
-<!--                                          -fx-prompt-text-fill: #7F8C8D; -fx-background-radius: 4;-->
-<!--                                          -fx-border-color: #4A6278; -fx-border-radius: 4; -fx-padding: 4 6;"/>-->
-<!--                        <Button fx:id="btnInsert" text="➕" onAction="#handleInsert" prefWidth="36"-->
-<!--                                style="-fx-background-color: #2ECC71; -fx-text-fill: white;-->
-<!--                                       -fx-font-size: 14px; -fx-background-radius: 4; -fx-cursor: hand;">-->
-<!--                            <tooltip><Tooltip text="Insert value into max-heap"/></tooltip>-->
-<!--                        </Button>-->
-<!--                    </HBox>-->
-<!--                </VBox>-->
-<!--                &lt;!&ndash; EXTRACT MAX &ndash;&gt;-->
-<!--                <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10;-->
-<!--                                         -fx-background-radius: 8;" prefWidth="150">-->
-<!--                    <Label text="EXTRACT MAX" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                                      -fx-text-fill: #E74C3C;"/>-->
-<!--                    <Button fx:id="btnExtractMax" text="⬆ Extract Max" onAction="#handleExtractMax"-->
-<!--                            prefWidth="130"-->
-<!--                            style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 12px;-->
-<!--                                   -fx-background-radius: 4; -fx-cursor: hand; -fx-font-weight: bold;">-->
-<!--                        <tooltip><Tooltip text="Remove and return the maximum element (root)"/></tooltip>-->
-<!--                    </Button>-->
-<!--                </VBox>-->
-<!--                &lt;!&ndash; DELETE AT INDEX &ndash;&gt;-->
-<!--                <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10;-->
-<!--                                         -fx-background-radius: 8;" prefWidth="165">-->
-<!--                    <Label text="DELETE AT INDEX" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                                          -fx-text-fill: #E67E22;"/>-->
-<!--                    <HBox spacing="6">-->
-<!--                        <TextField fx:id="deleteIndexField" prefWidth="70" promptText="index"-->
-<!--                                   style="-fx-background-color: #1E2A38; -fx-text-fill: white;-->
-<!--                                          -fx-prompt-text-fill: #7F8C8D; -fx-background-radius: 4;-->
-<!--                                          -fx-border-color: #4A6278; -fx-border-radius: 4; -fx-padding: 4 6;"/>-->
-<!--                        <Button fx:id="btnDeleteIdx" text="🗑" onAction="#handleDeleteAtIndex" prefWidth="36"-->
-<!--                                style="-fx-background-color: #E67E22; -fx-text-fill: white;-->
-<!--                                       -fx-font-size: 13px; -fx-background-radius: 4; -fx-cursor: hand;">-->
-<!--                            <tooltip><Tooltip text="Delete element at given array index"/></tooltip>-->
-<!--                        </Button>-->
-<!--                    </HBox>-->
-<!--                </VBox>-->
-<!--                &lt;!&ndash; PEEK / FIND MIN &ndash;&gt;-->
-<!--                <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10;-->
-<!--                                         -fx-background-radius: 8;" prefWidth="155">-->
-<!--                    <Label text="QUERY" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                               -fx-text-fill: #9B59B6;"/>-->
-<!--                    <HBox spacing="6">-->
-<!--                        <Button fx:id="btnPeekMax" text="👁 Peek Max" onAction="#handlePeekMax"-->
-<!--                                prefWidth="90"-->
-<!--                                style="-fx-background-color: #9B59B6; -fx-text-fill: white;-->
-<!--                                       -fx-font-size: 11px; -fx-background-radius: 4; -fx-cursor: hand;">-->
-<!--                            <tooltip><Tooltip text="Highlight the maximum element without removing it"/></tooltip>-->
-<!--                        </Button>-->
-<!--                        <Button fx:id="btnFindMin" text="🔍 Min" onAction="#handleFindMin"-->
-<!--                                prefWidth="60"-->
-<!--                                style="-fx-background-color: #8E44AD; -fx-text-fill: white;-->
-<!--                                       -fx-font-size: 11px; -fx-background-radius: 4; -fx-cursor: hand;">-->
-<!--                            <tooltip><Tooltip text="Find the minimum element (always a leaf node)"/></tooltip>-->
-<!--                        </Button>-->
-<!--                    </HBox>-->
-<!--                </VBox>-->
-<!--                &lt;!&ndash; HEAP SORT &ndash;&gt;-->
-<!--                <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10;-->
-<!--                                         -fx-background-radius: 8;" prefWidth="130">-->
-<!--                    <Label text="HEAP SORT" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                                    -fx-text-fill: #3498DB;"/>-->
-<!--                    <Button fx:id="btnHeapSort" text="📊 Sort" onAction="#handleHeapSort"-->
-<!--                            prefWidth="110"-->
-<!--                            style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 12px;-->
-<!--                                   -fx-background-radius: 4; -fx-cursor: hand; -fx-font-weight: bold;">-->
-<!--                        <tooltip><Tooltip text="Run heap sort on current heap (non-destructive)"/></tooltip>-->
-<!--                    </Button>-->
-<!--                </VBox>-->
-<!--            </HBox>-->
-<!--            &lt;!&ndash; Build Heap + Speed + Clear Row &ndash;&gt;-->
-<!--            <HBox spacing="20" alignment="CENTER_LEFT">-->
-<!--                &lt;!&ndash; BUILD HEAP &ndash;&gt;-->
-<!--                <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10;-->
-<!--                                         -fx-background-radius: 8;">-->
-<!--                    <Label text="BUILD HEAP FROM ARRAY" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                                                 -fx-text-fill: #1ABC9C;"/>-->
-<!--                    <HBox spacing="6">-->
-<!--                        <TextField fx:id="buildArrayField" prefWidth="260"-->
-<!--                                   promptText="e.g. 3, 10, 5, 1, 8, 7"-->
-<!--                                   style="-fx-background-color: #1E2A38; -fx-text-fill: white;-->
-<!--                                          -fx-prompt-text-fill: #7F8C8D; -fx-background-radius: 4;-->
-<!--                                          -fx-border-color: #4A6278; -fx-border-radius: 4; -fx-padding: 4 8;"/>-->
-<!--                        <Button fx:id="btnBuildHeap" text="🏗 Build" onAction="#handleBuildHeap"-->
-<!--                                prefWidth="80"-->
-<!--                                style="-fx-background-color: #1ABC9C; -fx-text-fill: white; -fx-font-size: 12px;-->
-<!--                                       -fx-background-radius: 4; -fx-cursor: hand; -fx-font-weight: bold;">-->
-<!--                            <tooltip><Tooltip text="Build a max-heap from the given array using O(n) heapify"/></tooltip>-->
-<!--                        </Button>-->
-<!--                    </HBox>-->
-<!--                </VBox>-->
-<!--                &lt;!&ndash; SPEED &ndash;&gt;-->
-<!--                <VBox spacing="4" alignment="CENTER_LEFT">-->
-<!--                    <Label text="SPEED" style="-fx-font-size: 11px; -fx-font-weight: bold;-->
-<!--                                               -fx-text-fill: #95A5A6;"/>-->
-<!--                    <Slider fx:id="speedSlider" min="1" max="100" value="50" prefWidth="150"-->
-<!--                            showTickLabels="true" showTickMarks="true"/>-->
-<!--                </VBox>-->
-<!--                &lt;!&ndash; CLEAR &ndash;&gt;-->
-<!--                <Button fx:id="btnClear" text="🗑 Clear All" onAction="#handleClear"-->
-<!--                        style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 13px;-->
-<!--                               -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;-->
-<!--                               -fx-padding: 8 16;">-->
-<!--                    <tooltip><Tooltip text="Clear the heap and reset"/></tooltip>-->
-<!--                </Button>-->
-<!--            </HBox>-->
-<!--            &lt;!&ndash; Status / Log Row &ndash;&gt;-->
-<!--            <HBox spacing="20" alignment="CENTER_LEFT"-->
-<!--                  style="-fx-background-color: #1E2A38; -fx-padding: 8 12; -fx-background-radius: 6;">-->
-<!--                <Label text="STATUS:" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #95A5A6;"/>-->
-<!--                <Label fx:id="statusLabel" text="Ready"-->
-<!--                       style="-fx-font-size: 12px; -fx-text-fill: #ECF0F1;"/>-->
-<!--                <Label text="  |  " style="-fx-text-fill: #4A6278;"/>-->
-<!--                <Label text="LOG:" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #95A5A6;"/>-->
-<!--                <Label fx:id="logLabel" text="—"-->
-<!--                       style="-fx-font-size: 12px; -fx-text-fill: #F39C12;"/>-->
-<!--            </HBox>-->
-<!--        </VBox>-->
-<!--    </top>-->
-<!--    &lt;!&ndash; ═══════════════════════  CENTER — TREE  ═══════════════════════ &ndash;&gt;-->
+<!--<BorderPane prefHeight="780" prefWidth="1200" style="-fx-background-color: #ECF0F1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dsa.visualizer.controllers.HeapController">-->
 <!--    <center>-->
-<!--        <VBox style="-fx-background-color: #1E2A38;" spacing="0">-->
-<!--            <Label text="Binary Tree View"-->
-<!--                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #7F8C8D;-->
-<!--                          -fx-padding: 8 16 0 16;"/>-->
-<!--            <Pane fx:id="treePane" style="-fx-background-color: #1E2A38;" prefHeight="340">-->
-<!--                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>-->
-<!--            </Pane>-->
-<!--            <Label text="Array Representation  (index shown below each cell)"-->
-<!--                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #7F8C8D;-->
-<!--                          -fx-padding: 0 16 4 16;"/>-->
-<!--            <Pane fx:id="arrayPane" style="-fx-background-color: #253545;" prefHeight="70">-->
-<!--                <padding><Insets top="8" right="10" bottom="8" left="10"/></padding>-->
-<!--            </Pane>-->
+<!--        <VBox spacing="10" style="-fx-background-color: #ECF0F1;">-->
+<!--            <padding>-->
+<!--                <Insets bottom="10" left="10" right="10" top="10" />-->
+<!--            </padding>-->
+<!--            <HBox alignment="CENTER" style="-fx-background-color: #2C3E50; -fx-padding: 12;">-->
+<!--                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Max-Heap Visualizer" textFill="white" />-->
+<!--            </HBox>-->
+<!--            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">-->
+<!--                <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Value:" />-->
+<!--                <TextField fx:id="insertField" prefWidth="80" promptText="Enter value" style="-fx-font-size: 12px;" />-->
+<!--                <Button fx:id="btnInsert" onAction="#handleInsert" prefHeight="30" prefWidth="70" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 11px;" text="Insert" />-->
+<!--                <Button fx:id="btnExtractMax" onAction="#handleExtractMax" prefHeight="30" prefWidth="90" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 11px;" text="Extract Max" />-->
+<!--                <Button fx:id="btnPeekMax" onAction="#handlePeekMax" prefHeight="30" prefWidth="80" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 11px;" text="Peek Max" />-->
+<!--                <Separator orientation="VERTICAL" prefHeight="30" />-->
+<!--                <Button fx:id="btnClear" onAction="#handleClear" prefHeight="30" prefWidth="70" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 11px;" text="Clear" />-->
+<!--            </HBox>-->
+<!--            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">-->
+<!--                <Button fx:id="btnHeapSort" onAction="#handleHeapSort" prefHeight="30" prefWidth="188.0" style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;" text="Heap Sort" />-->
+<!--                <Separator orientation="VERTICAL" prefHeight="30" />-->
+<!--                <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Build from Array:" />-->
+<!--                <TextField fx:id="buildArrayField" prefWidth="200" promptText="e.g. 3, 10, 5, 1, 8, 7" style="-fx-font-size: 12px;" />-->
+<!--                <Button fx:id="btnBuildHeap" onAction="#handleBuildHeap" prefHeight="30" prefWidth="90" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 11px;" text="Build Heap" />-->
+<!--                <Separator orientation="VERTICAL" prefHeight="30" />-->
+<!--            </HBox>-->
+<!--            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #34495E; -fx-padding: 8; -fx-background-radius: 5;">-->
+<!--                <Label fx:id="statusLabel" style="-fx-font-size: 12px;" text="Ready" textFill="white" HBox.hgrow="ALWAYS" />-->
+<!--                <Label fx:id="sizeLabel" style="-fx-font-size: 12px;" text="Size: 0 | Max: —" textFill="white" />-->
+<!--                <Label fx:id="logLabel" style="-fx-font-size: 12px;" text="" textFill="#F39C12" />-->
+<!--            </HBox>-->
+<!--            <ScrollPane fitToHeight="false" fitToWidth="false" hbarPolicy="AS_NEEDED" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 2;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">-->
+<!--                <Pane fx:id="treePane" prefHeight="420" prefWidth="1400" style="-fx-background-color: white;" />-->
+<!--            </ScrollPane>-->
+<!--            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="914.0" spacing="8" style="-fx-background-color: #34495E; -fx-padding: 6 10;">-->
+<!--                <Label prefHeight="25.0" prefWidth="136.0" style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Array Representation:" textFill="white" />-->
+<!--                <Label style="-fx-font-size: 11px;" text="(index shown below each cell)" textFill="#95A5A6" />-->
+<!--            </HBox>-->
+<!--            <Pane fx:id="arrayPane" prefHeight="122.0" prefWidth="932.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;" />-->
+<!--            <HBox alignment="CENTER" spacing="25" style="-fx-background-color: white; -fx-padding: 8; -fx-background-radius: 5;">-->
+<!--                <HBox alignment="CENTER" spacing="5">-->
+<!--                    <Label style="-fx-font-size: 16px; -fx-text-fill: #E67E22;" text="●" />-->
+<!--                    <Label style="-fx-font-size: 11px;" text="Root (Max)" />-->
+<!--                </HBox>-->
+<!--                <HBox alignment="CENTER" spacing="5">-->
+<!--                    <Label style="-fx-font-size: 16px; -fx-text-fill: #3498DB;" text="●" />-->
+<!--                    <Label style="-fx-font-size: 11px;" text="Node" />-->
+<!--                </HBox>-->
+<!--                <HBox alignment="CENTER" spacing="5">-->
+<!--                    <Label style="-fx-font-size: 16px; -fx-text-fill: #F1C40F;" text="●" />-->
+<!--                    <Label style="-fx-font-size: 11px;" text="Comparing" />-->
+<!--                </HBox>-->
+<!--                <HBox alignment="CENTER" spacing="5">-->
+<!--                    <Label style="-fx-font-size: 16px; -fx-text-fill: #E74C3C;" text="●" />-->
+<!--                    <Label style="-fx-font-size: 11px;" text="Swapping" />-->
+<!--                </HBox>-->
+<!--                <HBox alignment="CENTER" spacing="5">-->
+<!--                    <Label style="-fx-font-size: 16px; -fx-text-fill: #9B59B6;" text="●" />-->
+<!--                    <Label style="-fx-font-size: 11px;" text="Highlighted" />-->
+<!--                </HBox>-->
+<!--                <HBox alignment="CENTER" spacing="5">-->
+<!--                    <Label style="-fx-font-size: 16px; -fx-text-fill: #2ECC71;" text="●" />-->
+<!--                    <Label style="-fx-font-size: 11px;" text="Sorted" />-->
+<!--                </HBox>-->
+<!--            </HBox>-->
 <!--        </VBox>-->
 <!--    </center>-->
-<!--    &lt;!&ndash; ═══════════════════════  RIGHT — INFO PANEL  ═══════════════════════ &ndash;&gt;-->
 <!--    <right>-->
-<!--        <VBox spacing="12" prefWidth="230"-->
-<!--              style="-fx-background-color: #2C3E50; -fx-padding: 14;">-->
-<!--            <Label text="ℹ Heap Info"-->
-<!--                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>-->
-<!--            <Separator style="-fx-background-color: #4A6278;"/>-->
-<!--            &lt;!&ndash; Complexity Card &ndash;&gt;-->
-<!--            <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
-<!--                <Label text="⏱ Complexities"-->
-<!--                       style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #F39C12;"/>-->
-<!--                <Label text="Insert:       O(log n)" style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Extract Max:  O(log n)" style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Delete(idx):  O(log n)" style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Peek Max:     O(1)"     style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Find Min:     O(n)"     style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Build Heap:   O(n)"     style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Heap Sort:    O(n log n)" style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Space:        O(1)"     style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>-->
+<!--        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="265" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;" vbarPolicy="AS_NEEDED">-->
+<!--            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">-->
+<!--                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Algorithm Info" />-->
+<!--                <Label style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0;                                       -fx-pref-height: 1; -fx-max-width: Infinity;" text="" />-->
+<!--                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
+<!--                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #27AE60;" text="🟢 Insert" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="insert(val):&#10;  heap.append(val)&#10;  i = size - 1&#10;  while i &gt; 0:&#10;    p = (i-1) / 2&#10;    if heap[i] &gt; heap[p]:&#10;      swap(i, p)&#10;      i = p&#10;    else: break" wrapText="true" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time: O(log n) | Space: O(1)" />-->
+<!--                </VBox>-->
+<!--                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
+<!--                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #E74C3C;" text="🔴 Extract Max" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="extractMax():&#10;  max = heap[0]&#10;  heap[0] = heap[last]&#10;  heap.removeLast()&#10;  heapifyDown(0)&#10;&#10;heapifyDown(i):&#10;  largest = i&#10;  l=2i+1 ; r=2i+2&#10;  if heap[l]&gt;heap[largest]:&#10;    largest = l&#10;  if heap[r]&gt;heap[largest]:&#10;    largest = r&#10;  if largest != i:&#10;    swap(i, largest)&#10;    heapifyDown(largest)" wrapText="true" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time: O(log n) | Space: O(1)" />-->
+<!--                </VBox>-->
+<!--                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
+<!--                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #9B59B6;" text="🟣 Build Heap" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="buildHeap(arr):&#10;  heap = arr&#10;  for i = n/2-1 to 0:&#10;    heapifyDown(i)" wrapText="true" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';" text="Time: O(n) | Space: O(1)" />-->
+<!--                </VBox>-->
+<!--                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
+<!--                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16A085;" text="🔵 Heap Sort" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="heapSort():&#10;  buildMaxHeap(arr)&#10;  for i = n-1 to 1:&#10;    swap(arr[0], arr[i])&#10;    heapifyDown(i, 0)" wrapText="true" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time:  O(n log n)" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';" text="Space: O(1)" />-->
+<!--                </VBox>-->
+<!--                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
+<!--                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #F39C12;" text="⏱ All Complexities" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Insert:      O(log n)" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Extract Max: O(log n)" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Peek Max:    O(1)" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';" text="Build Heap:  O(n)" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Heap Sort:   O(n logn)" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';" text="Space:       O(1)" />-->
+<!--                </VBox>-->
+<!--                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
+<!--                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;" text=" Heap Property" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1;" text="Every parent ≥ its children. Max is always at index 0." wrapText="true" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #BDC3C7; -fx-font-family: 'Courier New';" text="Parent of i: (i-1)/2" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #BDC3C7; -fx-font-family: 'Courier New';" text="Left child:  2*i + 1" />-->
+<!--                    <Label style="-fx-font-size: 11px; -fx-text-fill: #BDC3C7; -fx-font-family: 'Courier New';" text="Right child: 2*i + 2" />-->
+<!--                </VBox>-->
 <!--            </VBox>-->
-<!--            &lt;!&ndash; Property Card &ndash;&gt;-->
-<!--            <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
-<!--                <Label text="📐 Max-Heap Property"-->
-<!--                       style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #9B59B6;"/>-->
-<!--                <Label wrapText="true"-->
-<!--                       style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1;"-->
-<!--                       text="Every parent node is ≥ its children. The maximum element is always at index 0 (root)."/>-->
-<!--                <Label text="Parent of i:  (i-1)/2"  style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Left child:   2*i + 1"  style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>-->
-<!--                <Label text="Right child:  2*i + 2"  style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>-->
-<!--            </VBox>-->
-<!--            &lt;!&ndash; Colour Legend &ndash;&gt;-->
-<!--            <VBox spacing="4" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">-->
-<!--                <Label text="🎨 Colour Legend"-->
-<!--                       style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #1ABC9C;"/>-->
-<!--                <Label text="🟠 Root (Max)"       style="-fx-font-size: 11px; -fx-text-fill: #E67E22;"/>-->
-<!--                <Label text="🔵 Default Node"     style="-fx-font-size: 11px; -fx-text-fill: #3498DB;"/>-->
-<!--                <Label text="🟡 Comparing"        style="-fx-font-size: 11px; -fx-text-fill: #F1C40F;"/>-->
-<!--                <Label text="🔴 Swapping"         style="-fx-font-size: 11px; -fx-text-fill: #E74C3C;"/>-->
-<!--                <Label text="🟣 Highlighted"      style="-fx-font-size: 11px; -fx-text-fill: #9B59B6;"/>-->
-<!--                <Label text="🟢 Sorted"           style="-fx-font-size: 11px; -fx-text-fill: #2ECC71;"/>-->
-<!--            </VBox>-->
-<!--        </VBox>-->
+<!--        </ScrollPane>-->
 <!--    </right>-->
 <!--</BorderPane>-->
 
-<BorderPane prefHeight="780" prefWidth="1200" style="-fx-background-color: #ECF0F1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dsa.visualizer.controllers.HeapController">
+<BorderPane prefHeight="780" prefWidth="1200" style="-fx-background-color: #ECF0F1;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dsa.visualizer.controllers.HeapController">
 
     <center>
         <VBox spacing="10" style="-fx-background-color: #ECF0F1;">
@@ -243,124 +141,124 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <!-- Header -->
+            <!-- ── Title bar ── -->
             <HBox alignment="CENTER" style="-fx-background-color: #2C3E50; -fx-padding: 12;">
-                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Max-Heap Visualizer" textFill="white" />
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Heap Visualizer" textFill="white" />
             </HBox>
 
-            <!-- Control Panel Row 1: Core Operations -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
-                <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Value:" />
-                <TextField fx:id="insertField" prefWidth="80" promptText="Enter value" style="-fx-font-size: 12px;" />
-                <Button fx:id="btnInsert" onAction="#handleInsert" prefHeight="30" prefWidth="70" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 11px;" text="Insert" />
-                <Button fx:id="btnExtractMax" onAction="#handleExtractMax" prefHeight="30" prefWidth="90" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 11px;" text="Extract Max" />
-                <Button fx:id="btnPeekMax" onAction="#handlePeekMax" prefHeight="30" prefWidth="80" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 11px;" text="Peek Max" />
-<!--                <Separator orientation="VERTICAL" prefHeight="30" />-->
-<!--                <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Index:" />-->
-<!--                <TextField fx:id="deleteIndexField" prefWidth="55" promptText="idx" style="-fx-font-size: 12px;" />-->
-<!--                <Button fx:id="btnDeleteIdx" onAction="#handleDeleteAtIndex" prefHeight="30" prefWidth="70" style="-fx-background-color: #E67E22; -fx-text-fill: white; -fx-font-size: 11px;" text="Delete" />-->
-                <Separator orientation="VERTICAL" prefHeight="30" />
-                <Button fx:id="btnClear" onAction="#handleClear" prefHeight="30" prefWidth="70" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 11px;" text="Clear" />
+            <!-- ══ NEW: Heap type selection row ══ -->
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="898.0" spacing="20" style="-fx-background-color: white; -fx-padding: 14; -fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-width: 1; -fx-border-radius: 5;">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Select Heap Type:" />
+                <Button fx:id="btnMaxHeap" onAction="#selectMaxHeap" prefHeight="38" prefWidth="160" style="-fx-background-color: #BDC3C7; -fx-text-fill: #2C3E50; -fx-font-size: 13px; -fx-cursor: hand;" text="🔺  Max-Heap" />
+                <Button fx:id="btnMinHeap" onAction="#selectMinHeap" prefHeight="38" prefWidth="160" style="-fx-background-color: #BDC3C7; -fx-text-fill: #2C3E50; -fx-font-size: 13px; -fx-cursor: hand;" text="🔻  Min-Heap" />
             </HBox>
 
-            <!-- Control Panel Row 2: Queries + Build + Sort -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
-<!--                <Button fx:id="btnFindMin" onAction="#handleFindMin" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 11px;" />-->
-                <Button fx:id="btnHeapSort" onAction="#handleHeapSort" prefHeight="30" prefWidth="188.0" style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;" text="Heap Sort" />
-                <Separator orientation="VERTICAL" prefHeight="30" />
-                <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Build from Array:" />
-                <TextField fx:id="buildArrayField" prefWidth="200" promptText="e.g. 3, 10, 5, 1, 8, 7" style="-fx-font-size: 12px;" />
-                <Button fx:id="btnBuildHeap" onAction="#handleBuildHeap" prefHeight="30" prefWidth="90" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 11px;" text="Build Heap" />
-                <Separator orientation="VERTICAL" prefHeight="30" />
-<!--                <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Speed:" />-->
-<!--                <Slider fx:id="speedSlider" max="100" min="1" prefWidth="120" showTickLabels="true" showTickMarks="true" value="50" />-->
-            </HBox>
 
-            <!-- Status Bar -->
-            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #34495E; -fx-padding: 8; -fx-background-radius: 5;">
-                <Label fx:id="statusLabel" style="-fx-font-size: 12px;" text="Ready" textFill="white" HBox.hgrow="ALWAYS" />
-                <Label fx:id="sizeLabel" style="-fx-font-size: 12px;" text="Size: 0 | Max: —" textFill="white" />
-                <Label fx:id="logLabel" style="-fx-font-size: 12px;" text="" textFill="#F39C12" />
-            </HBox>
+            <!-- ══ operationPanel: hidden until a mode is chosen ══ -->
+            <VBox fx:id="operationPanel" spacing="10">
 
-            <!-- Tree Visualization Pane -->
-            <ScrollPane fitToHeight="false" fitToWidth="false" hbarPolicy="AS_NEEDED" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 2;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
-                <Pane fx:id="treePane" prefHeight="420" prefWidth="1400" style="-fx-background-color: white;" />
-            </ScrollPane>
+                <!-- Row 1: insert / extract / peek / clear -->
+                <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="900.0" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Value:" />
+                    <TextField fx:id="insertField" prefWidth="80" promptText="Enter value" style="-fx-font-size: 12px;" />
+                    <Button fx:id="btnInsert" onAction="#handleInsert" prefHeight="30" prefWidth="70" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 11px;" text="Insert" />
+                    <Button fx:id="btnExtractMax" onAction="#handleExtractMax" prefHeight="30" prefWidth="100" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 11px;" text="Extract Max" />
+                    <Button fx:id="btnPeekMax" onAction="#handlePeekMax" prefHeight="30" prefWidth="80" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 11px;" text="Peek Max" />
 
-            <!-- Array Bar Label -->
-            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="914.0" spacing="8" style="-fx-background-color: #34495E; -fx-padding: 6 10;">
-                <Label prefHeight="25.0" prefWidth="136.0" style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Array Representation:" textFill="white" />
-                <Label style="-fx-font-size: 11px;" text="(index shown below each cell)" textFill="#95A5A6" />
-            </HBox>
+                    <Separator orientation="VERTICAL" prefHeight="30" />
 
-            <!-- Array Pane -->
-            <Pane fx:id="arrayPane" prefHeight="122.0" prefWidth="932.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;" />
+                    <!-- NEW: Random button -->
+                    <Button fx:id="btnRandom" onAction="#handleRandom" prefHeight="30" prefWidth="120" style="-fx-background-color: #8E44AD; -fx-text-fill: white; -fx-font-size: 11px;" text="🎲 Random" />
 
-            <!-- Legend -->
-            <HBox alignment="CENTER" spacing="25" style="-fx-background-color: white; -fx-padding: 8; -fx-background-radius: 5;">
-                <HBox alignment="CENTER" spacing="5">
-                    <Label style="-fx-font-size: 16px; -fx-text-fill: #E67E22;" text="●" />
-                    <Label style="-fx-font-size: 11px;" text="Root (Max)" />
+                    <Separator orientation="VERTICAL" prefHeight="30" />
+                    <Button fx:id="btnClear" onAction="#handleClear" prefHeight="30" prefWidth="70" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 11px;" text="Clear" />
                 </HBox>
-                <HBox alignment="CENTER" spacing="5">
-                    <Label style="-fx-font-size: 16px; -fx-text-fill: #3498DB;" text="●" />
-                    <Label style="-fx-font-size: 11px;" text="Node" />
+
+                <!-- Row 2: heap sort / build from array -->
+                <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="911.0" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 5;">
+                    <Button fx:id="btnHeapSort" onAction="#handleHeapSort" prefHeight="30" prefWidth="120" style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-size: 11px;" text="Heap Sort" />
+                    <Separator orientation="VERTICAL" prefHeight="30" />
+                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold;" text="Build from Array:" />
+                    <TextField fx:id="buildArrayField" prefWidth="200" promptText="e.g. 3, 10, 5, 1, 8, 7" style="-fx-font-size: 12px;" />
+                    <Button fx:id="btnBuildHeap" onAction="#handleBuildHeap" prefHeight="30" prefWidth="90" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 11px;" text="Build Heap" />
                 </HBox>
-                <HBox alignment="CENTER" spacing="5">
-                    <Label style="-fx-font-size: 16px; -fx-text-fill: #F1C40F;" text="●" />
-                    <Label style="-fx-font-size: 11px;" text="Comparing" />
+
+                <!-- Status bar -->
+                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #34495E; -fx-padding: 8; -fx-background-radius: 5;">
+                    <Label fx:id="statusLabel" style="-fx-font-size: 12px;" text="Ready" textFill="white" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="sizeLabel" style="-fx-font-size: 12px;" text="Size: 0" textFill="white" />
+                    <Label fx:id="logLabel" style="-fx-font-size: 12px;" text="" textFill="#F39C12" />
                 </HBox>
-                <HBox alignment="CENTER" spacing="5">
-                    <Label style="-fx-font-size: 16px; -fx-text-fill: #E74C3C;" text="●" />
-                    <Label style="-fx-font-size: 11px;" text="Swapping" />
+
+                <!-- Tree pane -->
+                <ScrollPane fitToHeight="false" fitToWidth="false" hbarPolicy="AS_NEEDED" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 2;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                    <Pane fx:id="treePane" prefHeight="415.0" prefWidth="1394.0" style="-fx-background-color: white;" />
+                </ScrollPane>
+
+                <!-- Array header -->
+
+                <!-- Array pane -->
+                <Pane fx:id="arrayPane" prefHeight="172.0" prefWidth="925.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;" />
+
+                <!-- Legend -->
+                <HBox alignment="CENTER" prefHeight="26.0" prefWidth="861.0" spacing="25" style="-fx-background-color: white; -fx-padding: 8; -fx-background-radius: 5;">
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #E67E22;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Max Root" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #1ABC9C;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Min Root" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #3498DB;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Node" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #F1C40F;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Comparing" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #E74C3C;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Swapping" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #9B59B6;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Highlighted" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #2ECC71;" text="●" />
+                        <Label style="-fx-font-size: 11px;" text="Sorted" />
+                    </HBox>
                 </HBox>
-                <HBox alignment="CENTER" spacing="5">
-                    <Label style="-fx-font-size: 16px; -fx-text-fill: #9B59B6;" text="●" />
-                    <Label style="-fx-font-size: 11px;" text="Highlighted" />
-                </HBox>
-                <HBox alignment="CENTER" spacing="5">
-                    <Label style="-fx-font-size: 16px; -fx-text-fill: #2ECC71;" text="●" />
-                    <Label style="-fx-font-size: 11px;" text="Sorted" />
-                </HBox>
-            </HBox>
+
+            </VBox>
+            <!-- end operationPanel -->
 
         </VBox>
     </center>
 
-    <!-- Right Panel: Pseudocode + Complexity -->
     <right>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="265" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;" vbarPolicy="AS_NEEDED">
             <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
 
                 <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Algorithm Info" />
-                <Label style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0;                                       -fx-pref-height: 1; -fx-max-width: Infinity;" text="" />
+                <Label style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0;                               -fx-pref-height: 1; -fx-max-width: Infinity;" text="" />
 
-                <!-- Insert -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #27AE60;" text="🟢 Insert" />
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="insert(val):&#10;  heap.append(val)&#10;  i = size - 1&#10;  while i &gt; 0:&#10;    p = (i-1) / 2&#10;    if heap[i] &gt; heap[p]:&#10;      swap(i, p)&#10;      i = p&#10;    else: break" wrapText="true" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="insert(val):&#10;  heap.append(val)&#10;  i = size - 1&#10;  while i &gt; 0:&#10;    p = (i-1) / 2&#10;    if priority(heap[i], heap[p]):&#10;      swap(i, p)&#10;      i = p&#10;    else: break" wrapText="true" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time: O(log n) | Space: O(1)" />
                 </VBox>
 
-                <!-- Extract Max -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #E74C3C;" text="🔴 Extract Max" />
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #E74C3C;" text="🔴 Extract Root" />
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="extractMax():&#10;  max = heap[0]&#10;  heap[0] = heap[last]&#10;  heap.removeLast()&#10;  heapifyDown(0)&#10;&#10;heapifyDown(i):&#10;  largest = i&#10;  l=2i+1 ; r=2i+2&#10;  if heap[l]&gt;heap[largest]:&#10;    largest = l&#10;  if heap[r]&gt;heap[largest]:&#10;    largest = r&#10;  if largest != i:&#10;    swap(i, largest)&#10;    heapifyDown(largest)" wrapText="true" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="extractRoot():&#10;  root = heap[0]&#10;  heap[0] = heap[last]&#10;  heap.removeLast()&#10;  heapifyDown(0)&#10;&#10;heapifyDown(i):&#10;  target = i&#10;  l=2i+1 ; r=2i+2&#10;  check l, r by priority&#10;  if target != i:&#10;    swap; recurse" wrapText="true" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time: O(log n) | Space: O(1)" />
                 </VBox>
 
-                <!-- Delete at Index -->
-                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #E67E22;" text="🟠 Delete at Index" />
-                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="delete(idx):&#10;  heap[idx] = +∞&#10;  bubbleUp(idx)&#10;  extractMax()" wrapText="true" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time: O(log n) | Space: O(1)" />
-                </VBox>
-
-                <!-- Build Heap -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #9B59B6;" text="🟣 Build Heap" />
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />
@@ -368,32 +266,27 @@
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';" text="Time: O(n) | Space: O(1)" />
                 </VBox>
 
-                <!-- Heap Sort -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16A085;" text="🔵 Heap Sort" />
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;" text="Pseudocode:" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="heapSort():&#10;  buildMaxHeap(arr)&#10;  for i = n-1 to 1:&#10;    swap(arr[0], arr[i])&#10;    heapifyDown(i, 0)" wrapText="true" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="heapSort():&#10;  buildHeap(arr)&#10;  for i = n-1 to 1:&#10;    swap(arr[0], arr[i])&#10;    heapifyDown(i, 0)" wrapText="true" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';" text="Time:  O(n log n)" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';" text="Space: O(1)" />
                 </VBox>
 
-                <!-- All Complexities -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #F39C12;" text="⏱ All Complexities" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Insert:      O(log n)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Extract Max: O(log n)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Delete(idx): O(log n)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Peek Max:    O(1)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Find Min:    O(n)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';" text="Build Heap:  O(n)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Heap Sort:   O(n logn)" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';" text="Space:       O(1)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Insert:       O(log n)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Extract Root: O(log n)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Peek Root:    O(1)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #2ECC71; -fx-font-family: 'Courier New';" text="Build Heap:   O(n)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';" text="Heap Sort:    O(n log n)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';" text="Space:        O(1)" />
                 </VBox>
 
-                <!-- Heap Property -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;" text="📐 Heap Property" />
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1;" text="Every parent ≥ its children. Max is always at index 0." wrapText="true" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1;" text="Max-Heap: every parent ≥ children. Max at index 0.&#10;Min-Heap: every parent ≤ children. Min at index 0." wrapText="true" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #BDC3C7; -fx-font-family: 'Courier New';" text="Parent of i: (i-1)/2" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #BDC3C7; -fx-font-family: 'Courier New';" text="Left child:  2*i + 1" />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #BDC3C7; -fx-font-family: 'Courier New';" text="Right child: 2*i + 2" />

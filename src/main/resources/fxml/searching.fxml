@@ -45,7 +45,7 @@
                         style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" prefWidth="120"/>
                 <Button fx:id="btnStep" text="Step Forward ▶|" onAction="#stepForward"
                         style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="130"/>
-                <Button text="⟲ Reset" onAction="#reset"
+                <Button fx:id="btnReset" text=" reset " onAction="#reset"
                         style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px;"/>
             </HBox>
 

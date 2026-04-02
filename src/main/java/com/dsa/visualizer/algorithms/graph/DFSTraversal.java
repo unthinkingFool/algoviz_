@@ -11,7 +11,12 @@ public class DFSTraversal {
             throws InterruptedException {
         if (nodes.isEmpty()) return;
 
-        dfs(nodes.get(0), controller);
+        // Check every node in the graph
+        for (GraphNode node : nodes) {
+            if (!node.visited) {
+                dfs(node, controller);
+            }
+        }
     }
 
     private void dfs(GraphNode node, GraphController controller) throws InterruptedException {

@@ -76,6 +76,11 @@
                        style="-fx-font-size: 12px;"/>
             </HBox>
 
+
+
+
+
+
             <!-- Visualization Pane with horizontal scroll -->
             <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="NEVER"
                         fitToHeight="true" fitToWidth="false"
