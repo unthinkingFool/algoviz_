@@ -45,7 +45,7 @@
             <VBox spacing="4">
                 <Label text="⬛  Sorting Algorithms"
                        style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
-                <Label text="    Visualize Bubble Sort, Insertion Sort, Selection Sort, and Merge Sort with animated bar swaps and comparisons. Supports custom arrays, random generation, adjustable speed, pause/resume, and step-by-step mode. Live comparison and swap counters are shown throughout."
+                <Label text="    Visualize Bubble Sort, Insertion Sort, Selection Sort, Merge Sort and Quick Sort with animated bar swaps and comparisons. Supports custom arrays, random generation, adjustable speed, pause/resume, and step-by-step mode. Live comparison and swap counters are shown throughout."
                        wrapText="true"
                        style="-fx-font-size: 12px; -fx-text-fill: #34495E; -fx-padding: 0 0 0 12;"/>
             </VBox>
