@@ -16,18 +16,13 @@ public class KruskalMST {
 
         int n = nodes.size();
 
-        // Build a mapping from node.id -> index (0..n-1)
-        // This is necessary because node IDs may not start at 0 or be contiguous
-        // after nodes are cleared and re-added (nodeIdCounter keeps incrementing).
+
         Map<Integer, Integer> idToIndex = new HashMap<>();
         for (int i = 0; i < n; i++) {
             idToIndex.put(nodes.get(i).id, i);
         }
 
-        // Collect unique undirected edges.
-        // addEdge() adds TWO Edge objects per connection: one on each node.
-        // The reverse edge has line=null (it's a lightweight back-reference).
-        // We must keep only the Edge that has a non-null line (the "visual" edge).
+
         List<Edge> allEdges = new ArrayList<>();
         for (GraphNode node : nodes) {
             for (Edge edge : node.edges) {
@@ -37,9 +32,7 @@ public class KruskalMST {
             }
         }
 
-        // Remove duplicates — addEdge adds the same visual edge to from.edges only,
-        // but generateRandomGraph can call addEdge multiple times; use a Set on the
-        // line object as identity to deduplicate.
+
         Set<javafx.scene.shape.Line> seen = new HashSet<>();
         List<Edge> uniqueEdges = new ArrayList<>();
         for (Edge e : allEdges) {
