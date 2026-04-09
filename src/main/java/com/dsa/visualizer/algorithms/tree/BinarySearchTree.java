@@ -40,8 +40,7 @@ public class BinarySearchTree {
         controller.highlightNode(node);
 
         int depth = getDepth(node);
-        // FIX: offset = max(INITIAL_OFFSET / 2^(depth+1), MIN_SEP)
-        // This prevents the offset collapsing to near-zero on deep trees.
+        
         double offset = Math.max(INITIAL_OFFSET / Math.pow(2, depth + 1), MIN_SEP);
 
         if (value < node.value) {
