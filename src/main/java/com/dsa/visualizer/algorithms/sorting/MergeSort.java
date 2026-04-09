@@ -1,6 +1,4 @@
 
-// ==================== MERGE SORT ====================
-// File: src/main/java/com/dsa/visualizer/algorithms/sorting/MergeSort.java
 package com.dsa.visualizer.algorithms.sorting;
 
 import com.dsa.visualizer.controllers.SortingController;

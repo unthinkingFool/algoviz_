@@ -40,7 +40,7 @@ public class SearchingController implements Initializable {
     private final Lock stepLock = new ReentrantLock();
     private volatile boolean waitingForStep = false;
 
-    // ✅ FIX: Keep a reference to the running search thread so we can interrupt it
+
     private Thread searchThread = null;
 
     @Override
@@ -219,7 +219,7 @@ public class SearchingController implements Initializable {
             btnStep.setDisable(false);
             btnPlayAll.setDisable(false);
 
-            // ✅ FIX: Save reference to the thread so reset() can interrupt it
+
             searchThread = new Thread(() -> {
                 try {
                     int result = -1;
@@ -247,7 +247,7 @@ public class SearchingController implements Initializable {
                     });
 
                 } catch (InterruptedException e) {
-                    // ✅ FIX: Thread was interrupted by reset() — clean up gracefully
+
                     Thread.currentThread().interrupt(); // restore interrupted status
                     Platform.runLater(() -> {
                         statusLabel.setText("Search interrupted");
@@ -268,25 +268,23 @@ public class SearchingController implements Initializable {
 
     @FXML
     private void reset() {
-        // ✅ FIX 1: Update flags BEFORE waking/interrupting the thread
+
         isSearching = false;
         stepMode = false;
 
-        // ✅ FIX 2: Wake up the thread if it's blocked in stepLock.wait()
-        //           so it can proceed and then get interrupted cleanly
+
         synchronized (stepLock) {
             waitingForStep = false;
             stepLock.notifyAll();
         }
 
-        // ✅ FIX 3: Interrupt the thread so Thread.sleep() throws InterruptedException
-        //           and the thread actually stops running
+
         if (searchThread != null && searchThread.isAlive()) {
             searchThread.interrupt();
             searchThread = null;
         }
 
-        // ✅ FIX 4: Restore UI to exactly the initial state (blank canvas)
+
         Platform.runLater(() -> {
             btnStep.setDisable(true);
             btnPlayAll.setDisable(false);
@@ -310,7 +308,7 @@ public class SearchingController implements Initializable {
     }
 
     public void visualizeCheck(int index) throws InterruptedException {
-        // ✅ FIX: Check interrupted flag so reset mid-animation works immediately
+
         if (Thread.currentThread().isInterrupted()) {
             throw new InterruptedException("Search was reset");
         }
@@ -333,7 +331,7 @@ public class SearchingController implements Initializable {
     }
 
     public void visualizeRange(int start, int end) throws InterruptedException {
-        // ✅ FIX: Same interrupt check here
+
         if (Thread.currentThread().isInterrupted()) {
             throw new InterruptedException("Search was reset");
         }
@@ -356,7 +354,7 @@ public class SearchingController implements Initializable {
                 Platform.runLater(() -> statusLabel.setText("Waiting - Click Step Forward"));
                 stepLock.wait();
 
-                // ✅ FIX: If woken up by reset (not by stepForward), throw to exit the thread
+
                 if (!isSearching) {
                     throw new InterruptedException("Search was reset during step wait");
                 }
