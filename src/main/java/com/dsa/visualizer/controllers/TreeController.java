@@ -108,7 +108,7 @@ public class TreeController implements Initializable {
                         statusLabel.setText("Deleted: " + value);
                         updateInfoLabel();
                         isRunning = false;
-                        // Fast instant redraw to clean up dangling edges/positions
+                        
                         completeRedraw();
                     });
                 } catch (InterruptedException e) {
@@ -263,8 +263,7 @@ public class TreeController implements Initializable {
         updateInfoLabel();
     }
 
-    // ─── Public visualization callbacks (called from BST on background thread) ──
-
+    
     public void addNodeToVisualization(TreeNode node, double x, double y) throws InterruptedException {
         Platform.runLater(() -> drawNodeAt(node, x, y));
         Thread.sleep(ANIM_DELAY);
@@ -297,7 +296,7 @@ public class TreeController implements Initializable {
     }
 
     public void removeNode(TreeNode node) throws InterruptedException {
-        // Flash RED so the user clearly sees which node is being deleted
+        
         Platform.runLater(() -> {
             if (node.circle != null) {
                 node.circle.setFill(Color.rgb(231, 76, 60));
@@ -316,7 +315,7 @@ public class TreeController implements Initializable {
     }
 
     public void updateNodeValue(TreeNode node, int newValue) throws InterruptedException {
-        // ORANGE pulse = "this node is being replaced by its inorder successor"
+       
         Platform.runLater(() -> {
             if (node.circle != null) {
                 node.circle.setFill(Color.rgb(230, 126, 34));
@@ -341,12 +340,7 @@ public class TreeController implements Initializable {
         Thread.sleep(ANIM_DELAY);
     }
 
-    // ─── Redraw after delete ──────────────────────────────────────────────────
-    //
-    // Called on the FX thread after delete completes.
-    // Redraws the whole tree using the SAME positioning formula as BinarySearchTree.insert()
-    // so the layout is identical to what was built incrementally during inserts.
-    // No sleeps — instant.
+    
 
     private void completeRedraw() {
         treePane.getChildren().clear();
@@ -355,11 +349,7 @@ public class TreeController implements Initializable {
         }
     }
 
-    /**
-     * Mirror of BinarySearchTree.insert() positioning logic.
-     * offset at each call = Math.max(INITIAL_OFFSET / 2^depth, MIN_SEP)
-     * We pass the already-computed offset in so we don't need depth tracking.
-     */
+    
     private void redrawNode(TreeNode node, double x, double y, double offset) {
         if (node == null) return;
 
@@ -377,7 +367,7 @@ public class TreeController implements Initializable {
         }
     }
 
-    // ─── Low-level draw primitives ────────────────────────────────────────────
+   
 
     private void drawNodeAt(TreeNode node, double x, double y) {
         Circle circle = new Circle(NODE_RADIUS);
@@ -415,7 +405,7 @@ public class TreeController implements Initializable {
         treePane.getChildren().add(0, line);
     }
 
-    // ─── Color / info helpers ─────────────────────────────────────────────────
+
 
     private void highlightNodeSync(TreeNode node) {
         if (node != null && node.circle != null) {
