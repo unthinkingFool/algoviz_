@@ -423,15 +423,12 @@ public class LinkedlistController {
         statusLabel.setText(msg);
 
         statusLabel.setStyle(
-//                "-fx-text-fill: " + color + ";" +
+
                         "-fx-text-fill: white;" +
                         "-fx-font-size: 12px;" +
                         "-fx-padding: 8 12 8 12;" +
                         "-fx-alignment: center-left;" +
                         "-fx-background-color: #34495E;" +
-//                        "-fx-border-color: #D5DBDB;" +
-//                        "-fx-border-width: 1;" +
-//                        "-fx-border-radius: 6;" +
                         "-fx-background-radius: 6;"
         );
 
