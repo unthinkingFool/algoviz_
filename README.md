@@ -254,4 +254,4 @@ A scrollable canvas showing the full list with HEAD/TAIL labels and index marker
 
 ## License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute it with attribution.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). 
