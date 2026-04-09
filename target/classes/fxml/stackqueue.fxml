@@ -122,7 +122,7 @@
 
                 <!-- Stack -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Stack (LIFO)"
+                    <Label text=" Stack (LIFO)"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Push Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -142,7 +142,7 @@
 
                 <!-- Queue -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Queue (FIFO)"
+                    <Label text=" Queue (FIFO)"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Enqueue Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"

@@ -319,10 +319,7 @@ public class StackQueueController implements Initializable {
 
     // ─── Core redraw helpers (must run on FX thread) ──────────────────────────
 
-    /**
-     * Redraws the entire stack. Stack grows upward on screen:
-     * bottom element is lowest, top element is highest.
-     */
+
     private void redrawStackNow() {
         visualizationPane.getChildren().clear();
 
@@ -330,10 +327,10 @@ public class StackQueueController implements Initializable {
         Deque<StackNode> deque = new ArrayDeque<>();
         StackNode cur = stack.getTop();
         while (cur != null) {
-            deque.addFirst(cur); // addFirst → deque[0] = bottom of stack
+            deque.addFirst(cur);
             cur = cur.next;
         }
-        List<StackNode> ordered = new ArrayList<>(deque); // index 0 = bottom
+        List<StackNode> ordered = new ArrayList<>(deque);
 
         int total = ordered.size();
         if (total == 0) return;
@@ -390,10 +387,7 @@ public class StackQueueController implements Initializable {
         visualizationPane.getChildren().add(base);
     }
 
-    /**
-     * Redraws the entire queue. Queue flows left→right:
-     * FRONT on the left, REAR on the right.
-     */
+
     private void redrawQueueNow() {
         visualizationPane.getChildren().clear();
 

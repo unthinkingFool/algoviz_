@@ -8,10 +8,7 @@ public class BinarySearchTree {
 
     public TreeNode root;
 
-    // Root is placed at the horizontal centre of the pane.
-    // Each level's x-offset = INITIAL_OFFSET / 2^depth
-    // INITIAL_OFFSET is half the pane width so the tree always
-    // fits inside the scrollable area regardless of how deep it grows.
+
     private static final double PANE_WIDTH      = 1400;
     private static final double INITIAL_OFFSET  = PANE_WIDTH / 2.0;   // 700 px
     private static final double ROOT_X          = PANE_WIDTH / 2.0;   // 700 px

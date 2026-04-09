@@ -77,7 +77,7 @@
 
                 <!-- Linear Search -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Linear Search"
+                    <Label text=" Linear Search"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -94,7 +94,7 @@
 
                 <!-- Binary Search -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Binary Search"
+                    <Label text=" Binary Search"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"

@@ -124,7 +124,7 @@
 
                 <!-- BST Insert / Search -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 BST Insert / Search"
+                    <Label text=" BST Insert / Search"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -138,7 +138,7 @@
 
                 <!-- Inorder -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Inorder Traversal"
+                    <Label text=" Inorder Traversal"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -151,7 +151,7 @@
 
                 <!-- Preorder -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Preorder Traversal"
+                    <Label text=" Preorder Traversal"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -162,7 +162,7 @@
 
                 <!-- Postorder -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Postorder Traversal"
+                    <Label text=" Postorder Traversal"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -173,7 +173,7 @@
 
                 <!-- Level Order -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Level Order (BFS)"
+                    <Label text=" Level Order (BFS)"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"

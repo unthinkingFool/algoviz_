@@ -99,7 +99,7 @@
                 <!-- Bubble Sort -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
-                           text="🔵 Bubble Sort"/>
+                           text=" Bubble Sort"/>
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
                            text="Pseudocode:"/>
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
@@ -120,7 +120,7 @@
                 <!-- Insertion Sort -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
-                           text="🔵 Insertion Sort"/>
+                           text=" Insertion Sort"/>
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
                            text="Pseudocode:"/>
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
@@ -141,7 +141,7 @@
                 <!-- Selection Sort -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
-                           text="🔵 Selection Sort"/>
+                           text=" Selection Sort"/>
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
                            text="Pseudocode:"/>
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
@@ -163,7 +163,7 @@
                 <VBox prefWidth="228.0" spacing="5"
                       style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"
-                           text="🔵 Merge Sort"/>
+                           text=" Merge Sort"/>
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
                            text="Pseudocode:"/>
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"
@@ -184,7 +184,7 @@
                 <VBox prefWidth="228.0" spacing="5"
                       style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
                     <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill:#3498DB;"
-                           text="🔵 Quick Sort"/>
+                           text=" Quick Sort"/>
                     <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"
                            text="Pseudocode:"/>
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"

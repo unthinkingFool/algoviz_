@@ -62,20 +62,11 @@ public class HeapController implements Initializable {
 
     // ─── Initialize ──────────────────────────────────────────────────────────
 
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//        // Hide the operation panel until the user picks a mode
-//        operationPanel.setVisible(false);
-//        operationPanel.setManaged(false);
-//
-//        // Default heap placeholder so nothing is null
-//        heap = new Heap(this, Heap.Mode.MAX);
-//        updateUI(Collections.emptyList(), -1, "Choose a heap type above to begin");
-//    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         heap = new Heap(this, Heap.Mode.MAX);
-        applyMode(Heap.Mode.MAX);  // auto-select Max-Heap on load
+        applyMode(Heap.Mode.MAX);
     }
     // ─── NEW: Mode selection handlers ────────────────────────────────────────
 

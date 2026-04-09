@@ -1,137 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.dsa.visualizer.controllers.GraphController">
 
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dsa.visualizer.controllers.GraphController">
     <top>
-        <VBox style="-fx-background-color: white; -fx-padding: 20;" spacing="15">
-            <Label text="Graph Visualizer" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <VBox spacing="9" style="-fx-background-color: white; -fx-padding: 12 18 12 18; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.10),10,0,0,3);">
 
-            <HBox spacing="15" alignment="CENTER_LEFT">
-                <Label text="Select Algorithm:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                <Button fx:id="btnDFS" text="DFS Traversal" onAction="#selectDFS"
-                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="130"/>
-                <Button fx:id="btnBFS" text="BFS Traversal" onAction="#selectBFS"
-                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="130"/>
-                <Button fx:id="btnKruskal" text="Kruskal MST" onAction="#selectKruskal"
-                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand;" prefWidth="130"/>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label style="-fx-font-size: 21px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text=" Graph Algorithm Visualizer" />
+                <Label fx:id="sectionLabel" style="-fx-font-size:13px;-fx-text-fill:#7F8C8D;" text="" />
             </HBox>
 
-            <VBox spacing="10">
-                <Label text="Instructions:" style="-fx-font-weight: bold;"/>
-                <Label text="Click on canvas to add nodes • Ctrl+Click on two nodes to connect them"/>
-            </VBox>
-
-            <HBox spacing="15">
-                <Button text="Generate Random Graph" onAction="#generateRandomGraph"
-                        style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 14px;"/>
-                <Button text="Clear Graph" onAction="#clearGraph"
-                        style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-size: 14px;"/>
-                <Button text="Reset Colors" onAction="#resetColors"
-                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 14px;"/>
-                <Button fx:id="btnPlayAll" text="▶ Run Algorithm" onAction="#playAll"
-                        style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" prefWidth="140"/>
-                <Button fx:id="btnStep" text="Step Forward ▶|" onAction="#stepForward"
-                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 14px;" prefWidth="130"/>
+            <!-- Section + directed toggles -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label style="-fx-font-weight:bold; -fx-font-size:13px; -fx-text-fill:#555;" text="Graph:" />
+                <Button fx:id="btnSectionUnweighted" onAction="#switchToUnweighted" prefWidth="125" style="-fx-background-color:#3498DB; -fx-text-fill:white; -fx-font-size:13px; -fx-background-radius:5; -fx-cursor:hand; -fx-font-weight:bold;" text=" Unweighted" />
+                <Button fx:id="btnSectionWeighted" onAction="#switchToWeighted" prefWidth="115" style="-fx-background-color:#3498DB; -fx-text-fill:white; -fx-font-size:13px; -fx-background-radius:5; -fx-cursor:hand;" text=" Weighted" />
+                <Label style="-fx-text-fill:#CCC;" text="  │  " />
+                <Label style="-fx-font-weight:bold; -fx-font-size:13px; -fx-text-fill:#555;" text="Mode:" />
+                <Button fx:id="btnDirectedToggle" onAction="#toggleDirected" prefWidth="120" style="-fx-background-color:#7F8C8D; -fx-text-fill:white; -fx-font-size:12px; -fx-background-radius:5; -fx-cursor:hand;" text="↔ Undirected" />
             </HBox>
 
-            <HBox spacing="20">
-                <Label fx:id="algorithmLabel" text="Algorithm: None Selected" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
-                <Label fx:id="statusLabel" text="Click to add nodes" style="-fx-font-size: 14px;"/>
+            <!-- Unweighted algorithms -->
+            <HBox fx:id="unweightedAlgoPanel" alignment="CENTER_LEFT" spacing="7">
+                <Label style="-fx-font-weight:bold; -fx-font-size:13px; -fx-text-fill:#555;" text="Algorithms:" />
+                <Button fx:id="btnDFS" onAction="#selectDFS" prefWidth="70" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text="DFS" />
+                <Button fx:id="btnBFS" onAction="#selectBFS" prefWidth="70" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text="BFS" />
+                <Button fx:id="btnCycleU" onAction="#selectCycle" prefWidth="145" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Cycle Detect" />
+                <Button fx:id="btnTopoU" onAction="#selectTopo" prefWidth="130" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Topo Sort" />
+                <Button fx:id="btnBipartiteU" onAction="#selectBipartite" prefWidth="115" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Bipartite" />
+            </HBox>
+
+            <!-- Weighted algorithms -->
+            <HBox fx:id="weightedAlgoPanel" alignment="CENTER_LEFT" managed="false" spacing="7" visible="false">
+                <Label style="-fx-font-weight:bold; -fx-font-size:13px; -fx-text-fill:#555;" text="Algorithms:" />
+                <Button fx:id="btnDijkstra" onAction="#selectDijkstra" prefWidth="145" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Dijkstra SSSP" />
+                <Button fx:id="btnKruskal" onAction="#selectKruskal" prefWidth="130" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Kruskal MST" />
+                <Button fx:id="btnCycleW" onAction="#selectCycle" prefWidth="145" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Cycle Detect" />
+                <Button fx:id="btnTopoW" onAction="#selectTopo" prefWidth="130" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Topo Sort" />
+                <Button fx:id="btnBipartiteW" onAction="#selectBipartite" prefWidth="115" style="-fx-background-color:#3498DB;-fx-text-fill:white;-fx-font-size:12px;-fx-background-radius:5;-fx-cursor:hand;" text=" Bipartite" />
+            </HBox>
+
+            <!-- Control buttons -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Button onAction="#generateRandomGraph" style="-fx-background-color:#9B59B6;-fx-text-fill:white;-fx-font-size:13px;-fx-background-radius:5;-fx-cursor:hand;" text=" Generate" />
+                <Button onAction="#clearGraph" style="-fx-background-color:#95A5A6;-fx-text-fill:white;-fx-font-size:13px;-fx-background-radius:5;-fx-cursor:hand;" text=" Clear" />
+                <Button onAction="#resetColors" style="-fx-background-color:#16A085;-fx-text-fill:white;-fx-font-size:13px;-fx-background-radius:5;-fx-cursor:hand;" text=" Reset" />
+                <Button fx:id="btnSetSource" onAction="#activateSourceSelection" style="-fx-background-color:#E67E22;-fx-text-fill:white;-fx-font-size:13px;-fx-background-radius:5;-fx-cursor:hand;" text=" Set Source" visible="false" />
+                <Button fx:id="btnPlayAll" onAction="#playAll" prefWidth="75" style="-fx-background-color:#27AE60;-fx-text-fill:white;-fx-font-size:13px;-fx-font-weight:bold;-fx-background-radius:5;-fx-cursor:hand;" text=" Run" />
+                <Button fx:id="btnStep" onAction="#stepForward" prefWidth="85" style="-fx-background-color:#F39C12;-fx-text-fill:white;-fx-font-size:13px;-fx-background-radius:5;-fx-cursor:hand;" text="Step ▶|" />
+            </HBox>
+
+            <!-- Status row -->
+            <HBox alignment="CENTER_LEFT" spacing="18">
+                <Label fx:id="algorithmLabel" style="-fx-font-size:13px;-fx-font-weight:bold;-fx-text-fill:#2C3E50;" text="Algorithm: None Selected" />
+                <Label fx:id="statusLabel" style="-fx-font-size:12px;-fx-text-fill:#7F8C8D;-fx-font-weight:bold " text="Click canvas to add nodes  •  Ctrl+Click two nodes to connect" />
             </HBox>
         </VBox>
     </top>
 
     <center>
-        <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED"
-                    fitToWidth="false" fitToHeight="false"
-                    style="-fx-background-color: #F8F9FA;">
-            <Pane fx:id="graphPane"
-                  style="-fx-background-color: #F8F9FA;"
-                  prefWidth="1400" prefHeight="900">
-                <padding>
-                    <Insets top="20" right="20" bottom="20" left="20"/>
-                </padding>
+        <ScrollPane fitToHeight="false" fitToWidth="false" hbarPolicy="AS_NEEDED" style="-fx-background-color:#F0F3F4;-fx-background:#F0F3F4;" vbarPolicy="AS_NEEDED">
+            <Pane fx:id="graphPane" prefHeight="900" prefWidth="1400" style="-fx-background-color:#F0F3F4;">
+                <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
             </Pane>
         </ScrollPane>
     </center>
 
     <bottom>
-        <VBox style="-fx-background-color: #2C3E50; -fx-padding: 10 15 10 15;" spacing="4">
-            <Label text="Traversal Result:" textFill="white"
-                   style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
-            <Label fx:id="traversalResultLabel" text="Run an algorithm to see traversal order"
-                   textFill="#BDC3C7"
-                   style="-fx-font-size: 13px; -fx-font-family: 'Courier New'; -fx-wrap-text: true;"
-                   wrapText="true"/>
+        <VBox spacing="3" style="-fx-background-color:#2C3E50;-fx-padding:8 16 8 16;">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Result:" textFill="white" />
+            <Label fx:id="traversalResultLabel" style="-fx-font-size:13px;-fx-font-family:'Courier New';-fx-wrap-text:true;" text="Run an algorithm to see results" textFill="#BDC3C7" wrapText="true" />
         </VBox>
     </bottom>
 
     <right>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-                    prefWidth="265" style="-fx-background-color: #2C3E50; -fx-background: #2C3E50;">
-            <VBox spacing="14" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="268" style="-fx-background-color:#2C3E50;-fx-background:#2C3E50;" vbarPolicy="AS_NEEDED">
+            <VBox spacing="9" style="-fx-background-color:#2C3E50;-fx-padding:13;">
 
-                <Label text="Algorithm Info"
-                       style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                <Label text="" style="-fx-border-color: #4A6278; -fx-border-width: 0 0 1 0; -fx-pref-height: 1; -fx-max-width: Infinity;"/>
+                <Label style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:white;" text="Algorithm Reference" />
+                <Label style="-fx-border-color:#4A6278;-fx-border-width:0 0 1 0;-fx-pref-height:1;-fx-max-width:Infinity;" text="" />
 
                 <!-- DFS -->
-                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 DFS Traversal"
-                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
-                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
-                    <Label wrapText="true"
-                           text="dfs(node):&#10;  mark node as visited&#10;  visit(node)&#10;  for each neighbor v:&#10;    if not visited:&#10;      dfs(v)"
-                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
-                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
-                    <Label text="O(V + E)"   style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
-                    <Label text="Space: O(V)" style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
-                    <Label wrapText="true" text="Uses recursion (call stack)."
-                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#3498DB;" text="DFS Traversal" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="dfs(v): mark v&#10;for u in adj(v):&#10;  if not visited: dfs(u)" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O(V+E)  Space: O(V)" />
                 </VBox>
 
                 <!-- BFS -->
-                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 BFS Traversal"
-                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
-                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
-                    <Label wrapText="true"
-                           text="queue = {start}&#10;visited = {start}&#10;while queue not empty:&#10;  u = queue.poll()&#10;  visit(u)&#10;  for each neighbor v:&#10;    if not visited:&#10;      visited.add(v)&#10;      queue.add(v)"
-                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
-                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
-                    <Label text="O(V + E)"   style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
-                    <Label text="Space: O(V)" style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
-                    <Label wrapText="true" text="Level-by-level traversal."
-                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#3498DB;" text="BFS Traversal" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="q={s}; while q:&#10;  u=poll(); for v in adj:&#10;    if new: enqueue(v)" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O(V+E)  Space: O(V)" />
+                </VBox>
+
+                <!-- Dijkstra -->
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#F39C12;" text="Dijkstra SSSP " />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="dist[s]=0, rest=∞&#10;pq={(0,s)}&#10;u=pop_min()&#10;relax all edges of u" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O((V+E)logV)  Space:O(V)" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#95A5A6;-fx-font-style:italic;" text="→ Set Source node, then Run" wrapText="true" />
                 </VBox>
 
                 <!-- Kruskal -->
-                <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Kruskal's MST"
-                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
-                    <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
-                    <Label wrapText="true"
-                           text="sort edges by weight&#10;MST = {}&#10;for each edge (u,v):&#10;  if find(u) != find(v):&#10;    MST.add(edge)&#10;    union(u, v)&#10;  if |MST| == V-1:&#10;    break"
-                           style="-fx-font-size: 11px; -fx-text-fill: #ECF0F1; -fx-font-family: 'Courier New';"/>
-                    <Label text="Time Complexity:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
-                    <Label text="O(E log E)"   style="-fx-font-size: 11px; -fx-text-fill: #F39C12; -fx-font-family: 'Courier New';"/>
-                    <Label text="Space: O(V)"   style="-fx-font-size: 11px; -fx-text-fill: #3498DB; -fx-font-family: 'Courier New';"/>
-                    <Label wrapText="true" text="Uses Union-Find (Disjoint Set)."
-                           style="-fx-font-size: 10px; -fx-text-fill: #95A5A6; -fx-font-style: italic;"/>
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#F39C12;" text="Kruskal MST " />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="sort edges by weight&#10;for (u,v):&#10;  if diff sets: add, union" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O(E logE)  Space: O(V)" />
+                </VBox>
+
+                <!-- Cycle Detection -->
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#E74C3C;" text="Cycle Detection " />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="Directed: 3-color DFS&#10;  GRAY=in-stack → cycle!&#10;Undirected: DFS+parent&#10;  visited≠parent → cycle!" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O(V+E)  Space: O(V)" />
+                </VBox>
+
+                <!-- Topological Sort -->
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#9B59B6;" text="Topological Sort " />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="Kahn's (BFS):&#10;in-deg map → q={0-deg}&#10;poll → add to order&#10;reduce neighbors" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O(V+E)  Space: O(V)" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#95A5A6;-fx-font-style:italic;" text="Requires → Directed mode" wrapText="true" />
+                </VBox>
+
+                <!-- Bipartite -->
+                <VBox spacing="3" style="-fx-background-color:#34495E;-fx-padding:9;-fx-background-radius:6;">
+                    <Label style="-fx-font-size:12px;-fx-font-weight:bold;-fx-text-fill:#2ECC71;" text="Bipartite Check " />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#ECF0F1;-fx-font-family:'Courier New';" text="BFS 2-coloring:&#10;alternate Cyan/Orange&#10;if adj same color:&#10;  NOT bipartite → red!" wrapText="true" />
+                    <Label style="-fx-font-size:10px;-fx-text-fill:#F39C12;-fx-font-family:'Courier New';" text="O(V+E)  Space: O(V)" />
                 </VBox>
 
             </VBox>
         </ScrollPane>
     </right>
-
 </BorderPane>

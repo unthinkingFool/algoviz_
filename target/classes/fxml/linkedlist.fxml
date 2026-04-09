@@ -126,7 +126,7 @@
 
                 <!-- Insert at Head -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Insert at Head"
+                    <Label text="Insert at Head"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -139,7 +139,7 @@
 
                 <!-- Insert at Tail -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Insert at Tail"
+                    <Label text=" Insert at Tail"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -153,7 +153,7 @@
 
                 <!-- Insert at Index -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Insert at Index"
+                    <Label text=" Insert at Index"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -167,7 +167,7 @@
 
                 <!-- Delete -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Delete"
+                    <Label text=" Delete"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"
@@ -181,7 +181,7 @@
 
                 <!-- Search -->
                 <VBox spacing="5" style="-fx-background-color: #34495E; -fx-padding: 10; -fx-background-radius: 6;">
-                    <Label text="🔵 Search"
+                    <Label text=" Search"
                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #3498DB;"/>
                     <Label text="Pseudocode:" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #BDC3C7;"/>
                     <Label wrapText="true"

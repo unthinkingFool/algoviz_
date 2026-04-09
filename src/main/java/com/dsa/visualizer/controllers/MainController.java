@@ -145,7 +145,7 @@ public class MainController implements Initializable {
         String originalStyle = btn.getStyle();
 
         btn.setOnMouseEntered(e -> {
-//            btn.setStyle(originalStyle + "; -fx-opacity: 0.75;");
+
             btn.setStyle(originalStyle + "; -fx-background-color: #E74C3C;");
             btn.setScaleX(1.05);
             btn.setScaleY(1.05);
