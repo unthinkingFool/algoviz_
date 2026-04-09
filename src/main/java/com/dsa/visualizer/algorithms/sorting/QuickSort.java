@@ -18,7 +18,7 @@ public class QuickSort {
         int x = arr[r];
         int i = p - 1;
         for (int j = p; j < r; j++) {
-            controller.visualizeComparison(i+1, j);
+            controller.visualizeComparison(j,r);
             if (arr[j] <= x) {
                 i++;
 
